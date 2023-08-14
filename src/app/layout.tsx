@@ -1,7 +1,5 @@
-import Header from "@/components/Header";
 import "./globals.css";
 import type { Metadata } from "next";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Zomato",
@@ -16,9 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative" suppressHydrationWarning={true}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
