@@ -10,6 +10,7 @@ const VenueCategoryBlock = () => {
           {venueCategories.map((venueCategory) => (
             <div className="w-4/12" key={venueCategory.title}>
               <VenueCategoryCard
+                url={venueCategory.url}
                 title={venueCategory.title}
                 subtitle={venueCategory.subtitle}
                 img={venueCategory.img}
