@@ -25,7 +25,7 @@ const RestaurantCard = () => {
           <div className="pt-2">
             <div className="flex items-center justify-between">
               <h4 className="text-lg text-gray-900">Maa Annpurna Restaurant</h4>
-              <NumericRating rating={3.2} />
+              <NumericRating rating={3.2} type="small" />
             </div>
             <div className="flex items-center justify-between">
               <h4 className="text-sm text-gray-600 font-light max-w-[180px] text-ellipsis whitespace-nowrap overflow-hidden">
