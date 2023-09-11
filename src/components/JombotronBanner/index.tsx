@@ -24,7 +24,7 @@ const JombortoneBanner = () => {
               />
             </div>
             <h1 className="text-white text-4xl">
-              Discover the best food & drinks in Bhopal
+              Discover the best food and drinks in Bhopal
             </h1>
           </div>
         </div>
