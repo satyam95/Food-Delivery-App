@@ -2,8 +2,9 @@ import { collectionsData } from "@/data/venueCategories";
 import Image from "next/image";
 import React from "react";
 import RestaurantCard from "../RestaurantCard";
+import { RestaurantProps } from "@/types/types";
 
-const DiningOut = () => {
+const DiningOut: React.FC<RestaurantProps> = ({ restaurant }) => {
   return (
     <>
       <section className="bg-[rgb(248,248,248)]">
@@ -81,15 +82,22 @@ const DiningOut = () => {
               Delivery Restaurants in Bhopal
             </h2>
             <div className="flex items-center gap-4 flex-wrap">
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
+              {restaurant.map((restaurant) => (
+                <RestaurantCard
+                  key={restaurant.info.resId}
+                  slug={restaurant.slug}
+                  name={restaurant.info.name}
+                  imageUrl={restaurant.info.image.url}
+                  rating={restaurant.info.rating.rating_text}
+                  costText={restaurant.info.costText.text}
+                  deliveryTime={restaurant.order?.deliveryTime || "N/A"}
+                  isPromoted={restaurant.isPromoted}
+                  bulkOffers={restaurant.bulkOffers.map(
+                    (offer: { text: any }) => offer?.text
+                  )}
+                  cuisine={restaurant.info.cuisine}
+                />
+              ))}
             </div>
           </div>
         </div>

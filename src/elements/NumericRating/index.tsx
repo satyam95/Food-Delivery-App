@@ -7,13 +7,13 @@ const NumericRating = ({
   rating,
   type,
 }: {
-  rating: number;
+  rating: string;
   type: "small" | "large";
 }) => {
   return (
     <div
-      className={`bg-[rgb(38,126,62)] inline-flex items-center rounded-md ${
-        type === "large" ? "gap-1.5 p-1.5" : "gap-1 p-1"
+      className={`${rating === "-" ? "bg-[rgb(156,156,156)]" : "bg-[rgb(38,126,62)]"} inline-flex items-center rounded-md ${
+        type === "large" ? "gap-1.5 p-1.5" : "gap-1 py-1 px-1.5"
       }`}
     >
       <div

@@ -2,8 +2,10 @@ import React from "react";
 import InspirationFoodCard from "../InspirationFoodCard";
 import Image from "next/image";
 import RestaurantCard from "../RestaurantCard";
+import { RestaurantProps } from "@/types/types";
+import { InspirationData } from "@/data/venueCategories";
 
-const DeliveryOnline = () => {
+const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
   return (
     <>
       <section className="bg-white sticky top-0 z-10">
@@ -28,24 +30,11 @@ const DeliveryOnline = () => {
               Inspiration for your first order
             </h2>
             <div className="flex items-center">
-              <div className="w-1/6">
-                <InspirationFoodCard />
-              </div>
-              <div className="w-1/6">
-                <InspirationFoodCard />
-              </div>
-              <div className="w-1/6">
-                <InspirationFoodCard />
-              </div>
-              <div className="w-1/6">
-                <InspirationFoodCard />
-              </div>
-              <div className="w-1/6">
-                <InspirationFoodCard />
-              </div>
-              <div className="w-1/6">
-                <InspirationFoodCard />
-              </div>
+              {InspirationData.map((item) => (
+                <div className="w-1/6" key={item.id}>
+                  <InspirationFoodCard name={item.title} image={item.image} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -57,15 +46,22 @@ const DeliveryOnline = () => {
               Delivery Restaurants in Bhopal
             </h2>
             <div className="flex items-center gap-4 flex-wrap">
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
+              {restaurant.map((restaurant) => (
+                <RestaurantCard
+                  key={restaurant.info.resId}
+                  slug={restaurant.slug}
+                  name={restaurant.info.name}
+                  imageUrl={restaurant.info.image.url}
+                  rating={restaurant.info.rating.rating_text}
+                  costText={restaurant.info.costText.text}
+                  deliveryTime={restaurant.order?.deliveryTime || "N/A"}
+                  isPromoted={restaurant.isPromoted}
+                  bulkOffers={restaurant.bulkOffers.map(
+                    (offer: { text: any }) => offer?.text
+                  )}
+                  cuisine={restaurant.info.cuisine}
+                />
+              ))}
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ const JombortoneBanner = () => {
   return (
     <section className="relative">
       <div className="relative h-[63vh] max-h-[570px]">
-        <div className="relaive w-full h-full">
+        <div className="absolute w-full h-full">
           <Image
             src="/images/banner1.jpg"
             alt="image"

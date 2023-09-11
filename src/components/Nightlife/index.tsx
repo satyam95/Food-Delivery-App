@@ -1,9 +1,10 @@
-import { collectionsData } from '@/data/venueCategories'
-import React from 'react'
-import RestaurantCard from '../RestaurantCard'
-import Image from 'next/image'
+import { collectionsData } from "@/data/venueCategories";
+import React from "react";
+import RestaurantCard from "../RestaurantCard";
+import Image from "next/image";
+import { RestaurantProps } from "@/types/types";
 
-const Nightlife = () => {
+const Nightlife: React.FC<RestaurantProps> = ({ restaurant }) => {
   return (
     <>
       <section className="bg-[rgb(248,248,248)]">
@@ -81,21 +82,28 @@ const Nightlife = () => {
               Delivery Restaurants in Bhopal
             </h2>
             <div className="flex items-center gap-4 flex-wrap">
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
-              <RestaurantCard />
+              {restaurant.map((restaurant) => (
+                <RestaurantCard
+                  key={restaurant.info.resId}
+                  slug={restaurant.slug}
+                  name={restaurant.info.name}
+                  imageUrl={restaurant.info.image.url}
+                  rating={restaurant.info.rating.rating_text}
+                  costText={restaurant.info.costText.text}
+                  deliveryTime={restaurant.order?.deliveryTime || "N/A"}
+                  isPromoted={restaurant.isPromoted}
+                  bulkOffers={restaurant.bulkOffers.map(
+                    (offer: { text: any }) => offer?.text
+                  )}
+                  cuisine={restaurant.info.cuisine}
+                />
+              ))}
             </div>
           </div>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Nightlife
+export default Nightlife;

@@ -28,14 +28,14 @@ const ResturantReviewCard = () => {
         </div>
       </div>
       <div className="flex items-center gap-2 mt-2 mb-4">
-        <NumericRating rating={5} type="small" />
+        <NumericRating rating="5" type="small" />
         <div className="text-base text-[rgb(54,54,54)]">DELIVERY</div>
         <div className="text-base text-[rgb(156,156,156)]">yesterday</div>
       </div>
       <div className="text-lg font-light text-[rgb(105,105,105)] mb-3">
-        very bad kwality and taste again disappointed for Kundan please don't
-        compromise for taste and brand . sir please don't mind.यह दूसरी बार हुआ
-        है।आप लोग बटर पनीर मसाला का स्वाद बरकरार नहीं रख पा रहे हैं। please
+        very bad kwality and taste again disappointed for Kundan please dont
+        compromise for taste and brand. sir please dont mind. यह दूसरी बार हुआ
+        है। आप लोग बटर पनीर मसाला का स्वाद बरकरार नहीं रख पा रहे हैं। please
         manage your test from butter paneer masala
       </div>
       <div className="text-base text-[rgb(156,156,156)] font-light mb-1">
