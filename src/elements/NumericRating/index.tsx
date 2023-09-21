@@ -7,7 +7,7 @@ const NumericRating = ({
   rating,
   type,
 }: {
-  rating: string;
+  rating: string | undefined;
   type: "small" | "large";
 }) => {
   return (

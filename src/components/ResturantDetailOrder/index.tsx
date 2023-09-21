@@ -3,17 +3,23 @@ import Image from "next/image";
 import React from "react";
 import MenuItemCard from "../MenuItemCard";
 
-const ResturantDetailOrder = () => {
+const ResturantDetailOrder = ({ order }: any) => {
   return (
     <div className="flex">
       <div className="w-[200px]">
         <div>
-          <div className="text-base py-3 px-1 text-[rgb(239,79,95)] border-r-[rgb(239,79,95)] border-r-[3px] linear-active-bg">
+          {/* <div className="text-base py-3 px-1 text-[rgb(239,79,95)] border-r-[rgb(239,79,95)] border-r-[3px] linear-active-bg">
             Extra
-          </div>
-          <div className="text-base py-3 px-1 text-[rgb(28,28,28)] font-light">
-            Most Loved Combos (4)
-          </div>
+          </div> */}
+          {order?.menuList?.menus.map((item: any) => (
+            <div
+              key={item.menu.id}
+              className="text-base py-3 px-1 text-[rgb(28,28,28)] font-light"
+            >
+              {item.menu.name} ({item.menu.categories[0].category.items?.length}
+              )
+            </div>
+          ))}
         </div>
       </div>
       <div className="pl-5 grow border-l border-[rgb(232,232,232)]">
@@ -56,23 +62,40 @@ const ResturantDetailOrder = () => {
               width={14}
               height={14}
             />
-            <p className="text-sm text-[rgb(130,130,130)] font-light">34 min</p>
+            <p className="text-sm text-[rgb(130,130,130)] font-light">
+              {order.deliveryTime}
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-2 mt-4">
-          <CouponCard title="Free Lemonade" desc="order above ₹298" />
-          <CouponCard title="50% OFF up to ₹100" desc="use code WELCOME50" />
-          <CouponCard title="Flat ₹80 OFF" desc="use code SBITREATS" />
-          <CouponCard title="₹25 - ₹250 cashback" desc="use code PAYTMWEE..." />
-          <CouponCard
-            title="20% OFF up to ₹125 OFF"
-            desc="use code YESDELIGHT"
-          />
+          {order?.menuList?.promosOnMenu?.promos.map((promo: any) => (
+            <CouponCard
+              key={promo.offer.id}
+              title={promo.offer.id}
+              desc={promo.title1.text}
+            />
+          ))}
         </div>
         <div className="mt-4">
-          <div className="py-4 border-b">
-            <h4 className="text-2xl mb-4">Extra</h4>
-            <MenuItemCard />
+          <div className="py-4">
+            {order?.menuList?.menus.map((item: any) => (
+              <div className="border-b pb-4 mb-8" key={item.menu.id}>
+                <h4 className="text-2xl mb-4">{item.menu.name}</h4>
+                {item?.menu?.categories?.map((item: any) =>
+                  item.category.items.map((item: any) => (
+                    <MenuItemCard
+                      key={item.item.id}
+                      name={item.item.name}
+                      rating={item.item.rating?.value}
+                      voting={item.item.rating?.total_rating_text}
+                      price={item.item.price}
+                      image={item.item.item_image_url}
+                      tag_image={item.item.item_tag_image}
+                    />
+                  ))
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -2,18 +2,41 @@ import StarRating from "@/elements/StarRating";
 import Image from "next/image";
 import React from "react";
 
-const MenuItemCard = () => {
+const MenuItemCard = ({
+  name,
+  rating,
+  voting,
+  price,
+  image,
+  tag_image
+}: {
+  name: string;
+  rating: number;
+  voting: string;
+  price: number;
+  image: string | undefined;
+  tag_image: string;
+}) => {
   return (
-    <div className="flex gap-4 items-start">
+    <div className="flex gap-4 items-start pb-4 last:pb-0">
       <div className="relative w-[130px] h-[130px]">
+        {image !== undefined ? (
+          <Image
+            src={image}
+            alt={name}
+            fill={true}
+            className="object-cover rounded-2xl z-10"
+          />
+        ) : (
+          <Image
+            src="https://b.zmtcdn.com/images/res_avatar_476_320_1x_new.png"
+            alt="dummy food item"
+            fill={true}
+            className="object-cover rounded-2xl z-10"
+          />
+        )}
         <Image
-          src="https://b.zmtcdn.com/data/dish_photos/7bd/d63e53554fe50f45bb809c1bf8c0d7bd.jpg"
-          alt="dish"
-          fill={true}
-          className="object-cover rounded-2xl z-10"
-        />
-        <Image
-          src="/images/veg_icon.svg"
+          src={tag_image}
           alt="live-icon"
           width={14}
           height={14}
@@ -21,12 +44,12 @@ const MenuItemCard = () => {
         />
       </div>
       <div className="flex flex-col gap-3 pt-1.5">
-        <h4 className="text-lg leading-[18px]">Lemonade</h4>
+        <h4 className="text-lg leading-[18px]">{name}</h4>
         <div className="flex items-center gap-2.5">
-          <StarRating rating={3.5} />
-          <div className="text-base font-light">106 votes</div>
+          {rating && <StarRating rating={rating} />}
+          {voting && <div className="text-base font-light">{voting}</div>}
         </div>
-        <div className="text-base font-light">₹63</div>
+        <div className="text-base font-light">₹{price}</div>
       </div>
     </div>
   );

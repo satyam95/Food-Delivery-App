@@ -1,3 +1,20 @@
+interface IMAGES {
+  [photoId: string]: {
+    photoId: string;
+    url: string;
+    thumbUrl: string;
+    uploaderName: string;
+    uploaderProfilePic: string;
+    uploaderProfileUrl: string;
+    timestamp: string;
+    likeCount: number;
+    commentCount: number;
+    comments: never[];
+    isLiked: number;
+    hash: string;
+  };
+}
+
 export interface Restaurant {
   slug: string;
   type: string;
@@ -153,4 +170,48 @@ export interface Restaurant {
 
 export interface RestaurantProps {
   restaurant: Restaurant[]; // Correctly typed restaurant prop
+}
+
+export interface TabOverType {
+  cuisine:
+    | {
+        deeplink: string;
+        url: string;
+        name: string;
+      }[]
+    | undefined;
+  safetyCheck:
+    | {
+        image: {
+          url: string;
+          aspect_ratio: number;
+        };
+        text: string;
+      }[]
+    | undefined;
+    cft: string | undefined;
+}
+
+export interface TabType {
+  cuisine:
+    | {
+        deeplink: string;
+        url: string;
+        name: string;
+      }[]
+    | undefined;
+  safetyCheck:
+    | {
+        image: {
+          url: string;
+          aspect_ratio: number;
+        };
+        text: string;
+      }[]
+    | undefined;
+    cft: string | undefined;
+    order: any | undefined;
+    reviews: any | undefined;
+    restaurantName: string | undefined;
+    menu: any | undefined;
 }

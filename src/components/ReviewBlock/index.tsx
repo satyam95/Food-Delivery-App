@@ -2,9 +2,9 @@ import NumericRating from "@/elements/NumericRating";
 import React from "react";
 
 interface ReviewBlockPropsType {
-  reviewRating: number;
-  reviewCount: number;
-  reviewType: string;
+  reviewRating: string | undefined;
+  reviewCount: string | undefined;
+  reviewType: string | undefined;
 }
 
 const ReviewBlock = ({

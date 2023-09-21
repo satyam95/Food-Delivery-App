@@ -1,56 +1,35 @@
 import ButtonWithIcon from "@/elements/ButtonWithIcon";
 import SafetyCheckCard from "@/elements/SafetyCheckCard";
+import { TabOverType } from "@/types/types";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
-const ResturantDetailOverview = () => {
+const ResturantDetailOverview = ({ cuisine, safetyCheck, cft }: TabOverType) => {
   return (
     <div className="flex flex-wrap">
       <div className="w-2/3">
         <div className="text-2xl text-[rgb(28,28,28)">About this place</div>
-        <div className="pt-4 pl-1">
-          <SafetyCheckCard />
-        </div>
+        {safetyCheck?.length === 0 ? "" :(
+          <div className="pt-4 pl-1">
+            {safetyCheck?.map((item) => (
+              <SafetyCheckCard image={item.image.url} text={item.text} />
+            ))}
+          </div>
+        )}
         <div className="pt-6">
           <h3 className="text-xl">Cuisines</h3>
           <div className="flex gap-4 pt-2">
-            <Link
-              href="#"
-              className="text-base font-light leading-4 text-[rgb(17,145,153)] border border-[rgb(207,207,207)] p-2.5 rounded-[59px]"
-            >
-              North Indian
-            </Link>
-            <Link
-              href="#"
-              className="text-base font-light leading-4 text-[rgb(17,145,153)] border border-[rgb(207,207,207)] p-2.5 rounded-[59px]"
-            >
-              Fast Food
-            </Link>
-            <Link
-              href="#"
-              className="text-base font-light leading-4 text-[rgb(17,145,153)] border border-[rgb(207,207,207)] p-2.5 rounded-[59px]"
-            >
-              Chinese
-            </Link>
-            <Link
-              href="#"
-              className="text-base font-light leading-4 text-[rgb(17,145,153)] border border-[rgb(207,207,207)] p-2.5 rounded-[59px]"
-            >
-              South Indian
-            </Link>
-            <Link
-              href="#"
-              className="text-base font-light leading-4 text-[rgb(17,145,153)] border border-[rgb(207,207,207)] p-2.5 rounded-[59px]"
-            >
-              Juices
-            </Link>
+            {cuisine?.map((item) => (
+              <div key={item.name} className="text-base font-light leading-4 text-[rgb(17,145,153)] border border-[rgb(207,207,207)] p-2.5 rounded-[59px] cursor-pointer">
+                {item.name}
+              </div>
+            ))}
           </div>
         </div>
         <div className="pt-6">
           <h3 className="text-xl text-[rgb(28,28,28)]">Average Cost</h3>
           <p className="text-base text-[rgb(79,79,79)] pt-2">
-            ₹100 for one order (approx.)
+            {cft}
           </p>
           <p className="text-sm text-[rgb(156,156,156)] font-light">
             Exclusive of applicable taxes and charges, if any
@@ -99,7 +78,7 @@ const ResturantDetailOverview = () => {
         <div className="border rounded p-6 w-full border-[rgb(248,248,248)] shadow-[rgba(28,28,28,0.12)_0px_2px_8px]">
           <div>
             <h3 className="text-xl text-[rgb(28,28,28)]">Call</h3>
-            <p className="text-base text-primary">+918109799097</p>
+            <p className="text-base text-primary">+91 9999999999</p>
           </div>
           <div className="pt-4">
             <h3 className="text-xl text-[rgb(28,28,28)]">Direction</h3>
