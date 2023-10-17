@@ -12,7 +12,7 @@ const ResturantDetailOverview = ({ cuisine, safetyCheck, cft }: TabOverType) => 
         {safetyCheck?.length === 0 ? "" :(
           <div className="pt-4 pl-1">
             {safetyCheck?.map((item) => (
-              <SafetyCheckCard image={item.image.url} text={item.text} />
+              <SafetyCheckCard key={item.text} image={item.image.url} text={item.text} />
             ))}
           </div>
         )}

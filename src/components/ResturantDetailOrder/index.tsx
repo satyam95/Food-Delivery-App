@@ -1,20 +1,66 @@
 import CouponCard from "@/elements/CouponCard";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MenuItemCard from "../MenuItemCard";
 
 const ResturantDetailOrder = ({ order }: any) => {
+  const initialMenuCategory = order?.menuList?.menus[0].menu.id;
+  const [activeCategory, setActiveCategory] = useState(initialMenuCategory);
+  const divRef = useRef<HTMLDivElement | null>(null);
+
+  const handleSmoothScroll = (sectionId: string) => {
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+      const targetPosition = targetSection.offsetTop - 66;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (divRef.current) {
+        const divRect = divRef.current.getBoundingClientRect();
+        if (divRect.top <= 0) {
+          console.log("below top");
+          const menuSections = order?.menuList?.menus;
+          if (menuSections) {
+            for (let i = menuSections.length - 1; i >= 0; i--) {
+              const section = menuSections[i];
+              const sectionElement = document.getElementById(section.menu.id);
+              if (sectionElement) {
+                const rect = sectionElement.getBoundingClientRect();
+                if (rect.top <= 80) {
+                  setActiveCategory(section.menu.id);
+                  return;
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="flex">
+    <div className="flex" ref={divRef}>
       <div className="w-[200px]">
-        <div>
-          {/* <div className="text-base py-3 px-1 text-[rgb(239,79,95)] border-r-[rgb(239,79,95)] border-r-[3px] linear-active-bg">
-            Extra
-          </div> */}
+        <div className="sticky top-14 overflow-y-auto overflow-x-hidden h-full max-h-[calc(100vh-54px)] no-scrollbar">
           {order?.menuList?.menus.map((item: any) => (
             <div
               key={item.menu.id}
-              className="text-base py-3 px-1 text-[rgb(28,28,28)] font-light"
+              className={`text-base py-3 px-1 font-light ${
+                activeCategory === item.menu.id
+                  ? "text-[rgb(239,79,95)] font-medium border-r-4 border-[rgb(239,79,95)] linear-bg-pink"
+                  : "text-[rgb(28,28,28)]"
+              }`}
+              onClick={() => handleSmoothScroll(item.menu.id)}
             >
               {item.menu.name} ({item.menu.categories[0].category.items?.length}
               )
@@ -79,7 +125,11 @@ const ResturantDetailOrder = ({ order }: any) => {
         <div className="mt-4">
           <div className="py-4">
             {order?.menuList?.menus.map((item: any) => (
-              <div className="border-b pb-4 mb-8" key={item.menu.id}>
+              <div
+                className="border-b pb-4 mb-8"
+                key={item.menu.id}
+                id={item.menu.id}
+              >
                 <h4 className="text-2xl mb-4">{item.menu.name}</h4>
                 {item?.menu?.categories?.map((item: any) =>
                   item.category.items.map((item: any) => (

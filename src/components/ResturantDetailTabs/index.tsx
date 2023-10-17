@@ -23,7 +23,7 @@ const ResturantDetailTabs = ({
   };
   return (
     <>
-      <section className="relative flex items-center">
+      <section className="relative flex items-center sticky top-0 z-30 pt-4 bg-white">
         <div
           className="flex flex-col items-center justify-center cursor-pointer"
           onClick={() => handleTabClick(1)}
@@ -43,7 +43,7 @@ const ResturantDetailTabs = ({
             } rounder h-[3px] z-10 mt-1 w-full border-none`}
           />
         </div>
-        {order !== null && (
+        {order.menuList !== undefined && (
           <div
             className="flex flex-col items-center justify-center cursor-pointer"
             onClick={() => handleTabClick(2)}
@@ -64,45 +64,27 @@ const ResturantDetailTabs = ({
             />
           </div>
         )}
-
-        <div
-          className="flex flex-col items-center justify-center cursor-pointer"
-          onClick={() => handleTabClick(3)}
-        >
-          <h2
-            className={`${
-              activeTab === 3
-                ? "text-[rgb(239,79,95)]"
-                : "text-[rgb(105,105,105)]"
-            } text-lg px-4 pt-1 font-light`}
+        {reviews !== undefined && (
+          <div
+            className="flex flex-col items-center justify-center cursor-pointer"
+            onClick={() => handleTabClick(3)}
           >
-            Reviews
-          </h2>
-          <hr
-            className={`${
-              activeTab === 3 ? "bg-[rgb(255,126,139)]" : ""
-            } rounder h-[3px] z-10 mt-1 w-full border-none`}
-          />
-        </div>
-        {/* <div
-          className="flex flex-col items-center justify-center cursor-pointer"
-          onClick={() => handleTabClick(4)}
-        >
-          <h2
-            className={`${
-              activeTab === 4
-                ? "text-[rgb(239,79,95)]"
-                : "text-[rgb(105,105,105)]"
-            } text-lg px-4 pt-1 font-light`}
-          >
-            Photos
-          </h2>
-          <hr
-            className={`${
-              activeTab === 4 ? "bg-[rgb(255,126,139)]" : ""
-            } rounder h-[3px] z-10 mt-1 w-full border-none`}
-          />
-        </div> */}
+            <h2
+              className={`${
+                activeTab === 3
+                  ? "text-[rgb(239,79,95)]"
+                  : "text-[rgb(105,105,105)]"
+              } text-lg px-4 pt-1 font-light`}
+            >
+              Reviews
+            </h2>
+            <hr
+              className={`${
+                activeTab === 3 ? "bg-[rgb(255,126,139)]" : ""
+              } rounder h-[3px] z-10 mt-1 w-full border-none`}
+            />
+          </div>
+        )}
         {menu !== undefined && (
           <div
             className="flex flex-col items-center justify-center cursor-pointer"
@@ -141,7 +123,6 @@ const ResturantDetailTabs = ({
             restaurantName={restaurantName}
           />
         )}
-        {/* {activeTab === 4 && <ResturantDetailPhotos />} */}
         {activeTab === 5 && (
           <ResturantDetailMenu restaurantName={restaurantName} menu={menu} />
         )}
