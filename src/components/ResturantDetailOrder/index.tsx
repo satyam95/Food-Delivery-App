@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import MenuItemCard from "../MenuItemCard";
 
 const ResturantDetailOrder = ({ order }: any) => {
+  const [searchQuery, setSearchQuery] = useState("");
   const initialMenuCategory = order?.menuList?.menus[0].menu.id;
   const [activeCategory, setActiveCategory] = useState(initialMenuCategory);
   const divRef = useRef<HTMLDivElement | null>(null);
@@ -48,11 +49,41 @@ const ResturantDetailOrder = ({ order }: any) => {
     };
   }, []);
 
+  const filterMenuList = (menuList: any, searchQuery: string) => {
+    if (!searchQuery) {
+      return menuList;
+    }
+    return menuList
+      .map((menu: any) => {
+        const filteredCategories = menu.menu.categories.map((category: any) => {
+          const filteredItems = category.category.items.filter((item: any) =>
+            item.item.name.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+          if (filteredItems.length > 0) {
+            return { category: { ...category.category, items: filteredItems } };
+          }
+          return null;
+        });
+        const validCategories = filteredCategories.filter(
+          (category: any) => category !== null
+        );
+
+        if (validCategories.length > 0) {
+          return { menu: { ...menu.menu, categories: validCategories } };
+        }
+        return null;
+      })
+      .filter((menu: any) => menu !== null);
+  };
+
+  const filteredMenuList = filterMenuList(order?.menuList?.menus, searchQuery);
+  console.log(filteredMenuList.length);
+
   return (
     <div className="flex" ref={divRef}>
       <div className="w-[200px]">
         <div className="sticky top-14 overflow-y-auto overflow-x-hidden h-full max-h-[calc(100vh-54px)] no-scrollbar">
-          {order?.menuList?.menus.map((item: any) => (
+          {filteredMenuList.map((item: any) => (
             <div
               key={item.menu.id}
               className={`text-base py-3 px-1 font-light ${
@@ -84,6 +115,7 @@ const ResturantDetailOrder = ({ order }: any) => {
                 type="text"
                 placeholder="Search within menu"
                 className="w-full text-base text-gray-600 font-light placeholder:text-gray-400 placeholder:font-light placeholder:text-base focus:outline-none focus:ring-0"
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -124,28 +156,40 @@ const ResturantDetailOrder = ({ order }: any) => {
         </div>
         <div className="mt-4">
           <div className="py-4">
-            {order?.menuList?.menus.map((item: any) => (
-              <div
-                className="border-b pb-4 mb-8"
-                key={item.menu.id}
-                id={item.menu.id}
-              >
-                <h4 className="text-2xl mb-4">{item.menu.name}</h4>
-                {item?.menu?.categories?.map((item: any) =>
-                  item.category.items.map((item: any) => (
-                    <MenuItemCard
-                      key={item.item.id}
-                      name={item.item.name}
-                      rating={item.item.rating?.value}
-                      voting={item.item.rating?.total_rating_text}
-                      price={item.item.price}
-                      image={item.item.item_image_url}
-                      tag_image={item.item.item_tag_image}
-                    />
-                  ))
-                )}
+            {filteredMenuList.length == 0 ? (
+              <div className="flex flex-col gap-4 items-center py-4">
+                <Image
+                  src="https://b.zmtcdn.com/data/web_assets/92ee94aa8441af56a34dc5a61547c50a1591338812.png"
+                  alt="live-icon"
+                  width={264}
+                  height={165}
+                />
+                <p className="text-[rgb(79,79,79)] text-[13px]">No items found that match your search/filter.</p>
               </div>
-            ))}
+            ) : (
+              filteredMenuList.map((item: any) => (
+                <div
+                  className="border-b pb-4 mb-8"
+                  key={item.menu.id}
+                  id={item.menu.id}
+                >
+                  <h4 className="text-2xl mb-4">{item.menu.name}</h4>
+                  {item?.menu?.categories?.map((item: any) =>
+                    item.category.items.map((item: any) => (
+                      <MenuItemCard
+                        key={item.item.id}
+                        name={item.item.name}
+                        rating={item.item.rating?.value}
+                        voting={item.item.rating?.total_rating_text}
+                        price={item.item.price}
+                        image={item.item.item_image_url}
+                        tag_image={item.item.item_tag_image}
+                      />
+                    ))
+                  )}
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
