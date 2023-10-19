@@ -8,7 +8,6 @@ interface CuisinePropType {
 }
 
 interface RestaurantCardPropsType {
-  key: number;
   name: string;
   slug: string;
   imageUrl: string;
@@ -21,7 +20,6 @@ interface RestaurantCardPropsType {
 }
 
 const RestaurantCard = ({
-  key,
   name,
   slug,
   imageUrl,
@@ -33,7 +31,7 @@ const RestaurantCard = ({
   cuisine,
 }: RestaurantCardPropsType) => {
   return (
-    <div key={key} className="p-2.5 hover:bg-white hover:shadow-[rgba(28,28,28,0.12)_0px_0.4rem_1.8rem] hover:border-[rgb(232,232,232)] rounded-3xl" >
+    <div className="p-2.5 hover:bg-white hover:shadow-[rgba(28,28,28,0.12)_0px_0.4rem_1.8rem] hover:border-[rgb(232,232,232)] rounded-3xl" >
       <Link href={`/resturant/${slug}`}>
         <div className="max-w-[328px]">
           <div className="relative h-[248px] w-[328px]">

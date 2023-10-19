@@ -1,8 +1,23 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useState } from "react";
 
 const ListingHeader = () => {
+  const search = useSearchParams();
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState(search ? search.get("q") : "");
+
+  const onSearch = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (typeof searchQuery !== "string") {
+      return;
+    }
+    const encodedSearchQuery = encodeURI(searchQuery);
+    router.push(`/search?q=${encodedSearchQuery}`);
+  };
+
   return (
     <>
       <header className="py-2">
@@ -45,11 +60,15 @@ const ListingHeader = () => {
                   height={16}
                   className="mx-2"
                 />
-                <input
-                  type="text"
-                  placeholder="Search for restaurant, cuisine or a dish"
-                  className="w-full text-base text-gray-600 font-light placeholder:text-gray-600 placeholder:font-light placeholder:text-base focus:outline-none focus:ring-0"
-                />
+                <form onSubmit={onSearch}>
+                  <input
+                    type="text"
+                    value={searchQuery || ""}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    placeholder="Search for restaurant, cuisine or a dish"
+                    className="w-full text-base text-gray-600 font-light placeholder:text-gray-600 placeholder:font-light placeholder:text-base focus:outline-none focus:ring-0"
+                  />
+                </form>
               </div>
             </div>
             <nav>
