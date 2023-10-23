@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InspirationFoodCard from "../InspirationFoodCard";
 import Image from "next/image";
 import RestaurantCard from "../RestaurantCard";
@@ -11,6 +11,16 @@ import MultiRangeSlider from "@/elements/MultiRangeSlider";
 import CheckBoxField from "@/elements/CheckBoxField";
 
 const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
+  const initialFilterTipValue: {
+    cost: [number, number];
+    cuisine: string[];
+    rating: number;
+  } = {
+    cost: [0, 1000],
+    cuisine: [],
+    rating: 0,
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   const [tabState, setTabState] = useState(1);
 
@@ -18,6 +28,8 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
   const [selectedCuisines, setSelectedCuisines] = useState<string[]>([]);
   const [ratingValue, setRatingValue] = useState(0);
   const [costValues, setCostValues] = useState<[number, number]>([0, 1000]);
+
+  const [filterTipValue, setFilterTipValue] = useState(initialFilterTipValue);
 
   const [restaurantsSortedData, setRestaurantsSortedData] =
     useState<Restaurant[]>(restaurant);
@@ -146,15 +158,22 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
 
     // Filter based on cost per person
     const [minCost, maxCost] = costValues;
-    if (minCost !== 0 && maxCost !== 1000) {
+    if (minCost !== 0) {
       filteredRestaurants = filteredRestaurants.filter((restaurant) => {
-        const cost = parseInt(restaurant.info.cft.text.replace(/\D/g, ""));
+        const cost = parseInt(restaurant.info.cfo.text.replace(/\D/g, ""));
         return cost >= minCost && (maxCost === 1000 || cost <= maxCost);
       });
     }
 
     const sortedData = sortRestaurants(filteredRestaurants, sorting);
     setRestaurantsSortedData(sortedData);
+
+    setFilterTipValue({
+      cost: costValues, // Update the cost array
+      cuisine: selectedCuisines, // Update the cuisine array
+      rating: ratingValue, // Update the rating value
+    });
+
     closeModal();
   };
 
@@ -170,13 +189,48 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
     return Array.from(uniqueCuisines);
   }
 
+  const handleRatingTip = () => {
+    setRatingValue(0);
+    setFilterTipValue((prevValue) => ({
+      ...prevValue,
+      rating: 0,
+    }));
+  };
+
+  const handleCostRemove = () => {
+    setCostValues([0, 1000]);
+    setFilterTipValue((prevValue) => ({
+      ...prevValue,
+      cost: [0, 1000],
+    }));
+  };
+
+  const handleRemoveCuisine = (cuisineToRemove: string) => {
+    const updatedSelectedCuisines = selectedCuisines.filter(
+      (cuisine) => cuisine !== cuisineToRemove
+    );
+    const updatedFilterTipCuisine = filterTipValue.cuisine.filter(
+      (cuisine) => cuisine !== cuisineToRemove
+    );
+
+    setFilterTipValue((prevValue) => ({
+      ...prevValue,
+      cuisine: updatedFilterTipCuisine,
+    }));
+    setSelectedCuisines(updatedSelectedCuisines);
+  };
+
+  useEffect(() => {
+    applySorting();
+  }, [filterTipValue.rating, filterTipValue.cuisine, filterTipValue.cost]);
+
   const uniqueCuisinesList = getUniqueCuisines(restaurant);
 
   return (
     <>
       <section className="bg-white sticky top-0 z-10">
         <div className="max-w-[1100px] mx-auto">
-          <div className="py-6">
+          <div className="py-6 flex items-center gap-4 flex-wrap">
             <button
               onClick={openModal}
               className="flex items-center gap-2 text-base text-gray-600 font-light border rounded border-[rgb(207,207,207)] px-3 py-1.5 shadow-filter-btn"
@@ -189,6 +243,58 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
               />
               Filter
             </button>
+            {filterTipValue.rating > 0 && (
+              <div className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg">
+                <div className="text-base leading-[18px] text-white font-light">
+                  Rating: {numberToRating(filterTipValue.rating)}
+                </div>
+                <div className="cursor-pointer" onClick={handleRatingTip}>
+                  <Image
+                    src="/images/close_white_icon.svg"
+                    alt="filter-icon"
+                    height={18}
+                    width={18}
+                  />
+                </div>
+              </div>
+            )}
+            {filterTipValue.cuisine.length > 0 &&
+              filterTipValue.cuisine.map((cuisine, index) => (
+                <div
+                  key={index}
+                  className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg"
+                >
+                  <div className="text-base leading-[18px] text-white font-light">
+                    {cuisine}
+                  </div>
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => handleRemoveCuisine(cuisine)}
+                  >
+                    <Image
+                      src="/images/close_white_icon.svg"
+                      alt="filter-icon"
+                      height={18}
+                      width={18}
+                    />
+                  </div>
+                </div>
+              ))}
+            {filterTipValue.cost[0] !== 0 && (
+              <div className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg">
+                <div className="text-base leading-[18px] text-white font-light">
+                  Cost: {filterTipValue.cost[0]}+
+                </div>
+                <div className="cursor-pointer" onClick={handleCostRemove}>
+                  <Image
+                    src="/images/close_white_icon.svg"
+                    alt="filter-icon"
+                    height={18}
+                    width={18}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -215,22 +321,36 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
               Delivery Restaurants in Bhopal
             </h2>
             <div className="flex items-center gap-4 flex-wrap">
-              {restaurantsSortedData.map((restaurant) => (
-                <RestaurantCard
-                  key={restaurant.info.resId}
-                  slug={restaurant.slug}
-                  name={restaurant.info.name}
-                  imageUrl={restaurant.info.image.url}
-                  rating={restaurant.info.rating.rating_text}
-                  costText={restaurant.info.costText.text}
-                  deliveryTime={restaurant.order?.deliveryTime || "N/A"}
-                  isPromoted={restaurant.isPromoted}
-                  bulkOffers={restaurant.bulkOffers.map(
-                    (offer: { text: any }) => offer?.text
-                  )}
-                  cuisine={restaurant.info.cuisine}
-                />
-              ))}
+              {restaurantsSortedData.length === 0 ? (
+                <div className="flex flex-col gap-4 items-center py-4">
+                  <Image
+                    src="https://b.zmtcdn.com/data/web_assets/92ee94aa8441af56a34dc5a61547c50a1591338812.png"
+                    alt="live-icon"
+                    width={264}
+                    height={165}
+                  />
+                  <p className="text-[rgb(79,79,79)] text-[13px]">
+                    No items found that match your search/filter.
+                  </p>
+                </div>
+              ) : (
+                restaurantsSortedData.map((restaurant) => (
+                  <RestaurantCard
+                    key={restaurant.info.resId}
+                    slug={restaurant.slug}
+                    name={restaurant.info.name}
+                    imageUrl={restaurant.info.image.url}
+                    rating={restaurant.info.rating.rating_text}
+                    costText={restaurant.info.costText.text}
+                    deliveryTime={restaurant.order?.deliveryTime || "N/A"}
+                    isPromoted={restaurant.isPromoted}
+                    bulkOffers={restaurant.bulkOffers.map(
+                      (offer: { text: any }) => offer?.text
+                    )}
+                    cuisine={restaurant.info.cuisine}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>
