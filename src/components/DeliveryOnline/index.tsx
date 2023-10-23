@@ -3,15 +3,42 @@ import React, { useState } from "react";
 import InspirationFoodCard from "../InspirationFoodCard";
 import Image from "next/image";
 import RestaurantCard from "../RestaurantCard";
-import { RestaurantProps } from "@/types/types";
+import { Restaurant, RestaurantProps } from "@/types/types";
 import { InspirationData } from "@/data/venueCategories";
 import RadioField from "@/elements/RadioField";
 import RangeSlider from "@/elements/RangeSlider";
 import MultiRangeSlider from "@/elements/MultiRangeSlider";
+import CheckBoxField from "@/elements/CheckBoxField";
 
 const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [tabState, setTabState] = useState(1);
+
+  const [sorting, setSorting] = useState("Popularity");
+  const [selectedCuisines, setSelectedCuisines] = useState<string[]>([]);
+  const [ratingValue, setRatingValue] = useState(0);
+  const [costValues, setCostValues] = useState<[number, number]>([0, 1000]);
+
+  const [restaurantsSortedData, setRestaurantsSortedData] =
+    useState<Restaurant[]>(restaurant);
+
+  const handleSliderChange = (value: number, index: number) => {
+    setRatingValue(value);
+  };
+
+  const handleMarkerClick = (index: number) => {
+    if (index !== 4) {
+      setRatingValue(index);
+    }
+  };
+
+  const numberToRating = (value: number) => {
+    if (value === 0) return "Any";
+    if (value === 1) return "3.5+";
+    if (value === 2) return "4.0+";
+    if (value === 3) return "4.5+";
+    if (value === 4) return "5.0";
+  };
 
   const closeModal = () => {
     setIsOpen(false);
@@ -23,6 +50,127 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
       document.body.style.overflow = "hidden";
     }
   };
+
+  const sortByRatingHighToLow = (restaurant: Restaurant[]) => {
+    return restaurant.slice().sort((a, b) => {
+      const ratingA = parseFloat(a.info.rating.aggregate_rating);
+      const ratingB = parseFloat(b.info.rating.aggregate_rating);
+      if (ratingA > ratingB) {
+        return -1;
+      } else if (ratingA < ratingB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  };
+
+  const sortByDeliveryTime = (restaurant: Restaurant[]) => {
+    return restaurant.slice().sort((a, b) => {
+      const deliveryTimeA = a.order?.deliveryTime
+        ? parseInt(a.order.deliveryTime)
+        : Number.MAX_SAFE_INTEGER;
+      const deliveryTimeB = b.order?.deliveryTime
+        ? parseInt(b.order.deliveryTime)
+        : Number.MAX_SAFE_INTEGER;
+      return deliveryTimeA - deliveryTimeB;
+    });
+  };
+
+  const sortByCostLowToHigh = (restaurant: Restaurant[]) => {
+    return restaurant.slice().sort((a, b) => {
+      const costA = parseInt(a.info.cft.text.replace(/\D/g, ""));
+      const costB = parseInt(b.info.cft.text.replace(/\D/g, ""));
+      return costA - costB;
+    });
+  };
+
+  const sortByCostHighToLow = (restaurant: Restaurant[]) => {
+    return restaurant.slice().sort((a, b) => {
+      const costA = parseInt(a.info.cft.text.replace(/\D/g, ""));
+      const costB = parseInt(b.info.cft.text.replace(/\D/g, ""));
+      return costB - costA;
+    });
+  };
+
+  const sortRestaurants = (restaurant: Restaurant[], sorting: string) => {
+    if (sorting === "Rating: High to Low") {
+      return sortByRatingHighToLow(restaurant);
+    } else if (sorting === "Delivery Time") {
+      return sortByDeliveryTime(restaurant);
+    } else if (sorting === "Cost: Low to High") {
+      return sortByCostLowToHigh(restaurant);
+    } else if (sorting === "Cost: High to Low") {
+      return sortByCostHighToLow(restaurant);
+    }
+    return restaurant;
+  };
+
+  const handleCuisineChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSelectedCuisines((prevCuisine) =>
+      prevCuisine.includes(value)
+        ? prevCuisine.filter((brand) => brand !== value)
+        : [...prevCuisine, value]
+    );
+  };
+
+  const applySorting = () => {
+    let filteredRestaurants = restaurant.slice();
+
+    // Filter based on selected cuisines
+    if (selectedCuisines.length > 0) {
+      filteredRestaurants = filteredRestaurants.filter((restaurant) => {
+        for (const cuisine of selectedCuisines) {
+          if (restaurant.info.cuisine.some((c) => c.name === cuisine)) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
+
+    // Filter based on selected rating and above
+    if (ratingValue > 0) {
+      const ratingValueString = numberToRating(ratingValue);
+      if (ratingValueString) {
+        const ratingValueAsNumber = parseFloat(ratingValueString);
+        if (!isNaN(ratingValueAsNumber)) {
+          filteredRestaurants = filteredRestaurants.filter((restaurant) => {
+            const ratingA = parseFloat(restaurant.info.rating.aggregate_rating);
+            return ratingA >= ratingValueAsNumber;
+          });
+        }
+      }
+    }
+
+    // Filter based on cost per person
+    const [minCost, maxCost] = costValues;
+    if (minCost !== 0 && maxCost !== 1000) {
+      filteredRestaurants = filteredRestaurants.filter((restaurant) => {
+        const cost = parseInt(restaurant.info.cft.text.replace(/\D/g, ""));
+        return cost >= minCost && (maxCost === 1000 || cost <= maxCost);
+      });
+    }
+
+    const sortedData = sortRestaurants(filteredRestaurants, sorting);
+    setRestaurantsSortedData(sortedData);
+    closeModal();
+  };
+
+  function getUniqueCuisines(restaurants: Restaurant[]): string[] {
+    const uniqueCuisines = new Set<string>();
+
+    restaurants.forEach((restaurant) => {
+      restaurant.info.cuisine.forEach((cuisine) => {
+        uniqueCuisines.add(cuisine.name);
+      });
+    });
+
+    return Array.from(uniqueCuisines);
+  }
+
+  const uniqueCuisinesList = getUniqueCuisines(restaurant);
 
   return (
     <>
@@ -67,7 +215,7 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
               Delivery Restaurants in Bhopal
             </h2>
             <div className="flex items-center gap-4 flex-wrap">
-              {restaurant.map((restaurant) => (
+              {restaurantsSortedData.map((restaurant) => (
                 <RestaurantCard
                   key={restaurant.info.resId}
                   slug={restaurant.slug}
@@ -127,9 +275,7 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
                       >
                         Sort by
                       </p>
-                      <p className="text-[rgb(239,79,95)] text-sm">
-                        Popularity
-                      </p>
+                      <p className="text-[rgb(239,79,95)] text-sm">{sorting}</p>
                     </div>
                     <div
                       onClick={() => setTabState(2)}
@@ -146,6 +292,13 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
                       >
                         Cuisines
                       </p>
+                      {selectedCuisines.length > 0 ? (
+                        <p className="text-[rgb(239,79,95)] text-sm">
+                          {selectedCuisines.length} Selected
+                        </p>
+                      ) : (
+                        ""
+                      )}
                     </div>
                     <div
                       onClick={() => setTabState(3)}
@@ -187,60 +340,96 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
                           labelText="Popularity"
                           id="popularity_option"
                           name="sort_order"
-                          value="popularity"
+                          value="Popularity"
+                          checked={sorting === "Popularity"}
+                          onChange={() => setSorting("Popularity")}
                         />
                         <RadioField
                           labelText="Rating: High to Low"
                           id="rating_option"
                           name="sort_order"
-                          value="rating"
+                          value="Rating: High to Low"
+                          checked={sorting === "Rating: High to Low"}
+                          onChange={() => setSorting("Rating: High to Low")}
                         />
                         <RadioField
                           labelText="Delivery Time"
                           id="time_option"
                           name="sort_order"
-                          value="time"
+                          value="Delivery Time"
+                          checked={sorting === "Delivery Time"}
+                          onChange={() => setSorting("Delivery Time")}
                         />
                         <RadioField
                           labelText="Cost: Low to High"
                           id="cost_low_option"
                           name="sort_order"
-                          value="cost_low_high"
+                          value="Cost: Low to High"
+                          checked={sorting === "Cost: Low to High"}
+                          onChange={() => setSorting("Cost: Low to High")}
                         />
                         <RadioField
                           labelText="Cost: High to Low"
                           id="cost_high_option"
                           name="sort_order"
-                          value="cost_high_low"
+                          value="Cost: High to Low"
+                          checked={sorting === "Cost: High to Low"}
+                          onChange={() => setSorting("Cost: High to Low")}
                         />
                       </div>
                     </div>
-                    <div className={tabState === 2 ? "block" : "hidden"}>
-                      <div className="p-5 pt-6">
-                        <div className="flex items-center">
-                          <input
-                            type="checkbox"
-                            name="Abruzzese"
-                            id="Abruzzese"
-                            className="checkbox-style"
-                          />
-                          <label
-                            htmlFor="Abruzzese"
-                            className="text-base text-[rgb(28,28,28)] pl-2 font-light"
-                          >
-                            Abruzzese
-                          </label>
+                    <div className={tabState === 2 ? "block grow" : "hidden"}>
+                      <div className="flex">
+                        <div className="p-5 pt-6 grid grid-cols-2 gap-4 overflow-y-auto w-full max-h-[22.5rem] no-scrollbar">
+                          {uniqueCuisinesList.map((cuisine, index) => (
+                            <CheckBoxField
+                              key={index}
+                              labelText={cuisine}
+                              checked={selectedCuisines.includes(cuisine)}
+                              onChange={handleCuisineChange}
+                            />
+                          ))}
                         </div>
                       </div>
                     </div>
                     <div className={tabState === 3 ? "block h-full" : "hidden"}>
                       <div className="p-5 pt-6 w-full h-full">
-                        <RangeSlider />
+                        <div className="flex flex-col h-full">
+                          <div className="pt-4">
+                            <div className="text-[rgb(105,105,105)] text-sm">
+                              Rating
+                            </div>
+                            <div className="text-[rgb(28,28,28)] text-base">
+                              {numberToRating(ratingValue)}
+                            </div>
+                          </div>
+                          <RangeSlider
+                            value={ratingValue}
+                            handleSliderChange={handleSliderChange}
+                            handleMarkerClick={handleMarkerClick}
+                          />
+                        </div>
                       </div>
                     </div>
                     <div className={tabState === 4 ? "block h-full" : "hidden"}>
                       <div className="p-5 pt-6 w-full h-full">
-                        <MultiRangeSlider />
+                        <div className="flex flex-col h-full">
+                          <div className="pt-4">
+                            <div className="text-[rgb(105,105,105)] text-sm">
+                              Cost per person
+                            </div>
+                            <div className="text-[rgb(28,28,28)] text-base">
+                              ₹{costValues[0]} -{" "}
+                              {costValues[1] === 1000
+                                ? "Any"
+                                : `₹${costValues[1]}`}
+                            </div>
+                          </div>
+                          <MultiRangeSlider
+                            costValue={costValues}
+                            setCostValue={setCostValues}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -250,7 +439,10 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
                 <button className="px-5 py-2 text-base font-light">
                   Clear all
                 </button>
-                <button className="bg-primary px-5 py-2 rounded text-base font-light text-white flex gap-2 items-center">
+                <button
+                  onClick={applySorting}
+                  className="bg-primary px-5 py-2 rounded text-base font-light text-white flex gap-2 items-center"
+                >
                   Apply
                   <Image
                     src="/images/right_triangle_icon.svg"
