@@ -5,7 +5,7 @@ import React from 'react'
 const CollectionRectBlock = () => {
   return (
     <section className="bg-[rgb(248,248,248)]">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="py-14">
             <h2 className="text-3xl font-normal text-gray-900 pb-2">
               Collections
@@ -14,9 +14,9 @@ const CollectionRectBlock = () => {
               Explore curated lists of top restaurants, cafes, pubs, and bars in
               Bhopal, based on trends
             </p>
-            <div className="pt-6 flex justify-between items-center gap-4">
+            <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
               {collectionsData.map((collectionData) => (
-                <div className="w-3/12" key={collectionData.title}>
+                <div className="w-full md:w-3/12" key={collectionData.title}>
                   <div className="relative cursor-pointer">
                     <div className="relative w-full h-[400px]">
                       <Image

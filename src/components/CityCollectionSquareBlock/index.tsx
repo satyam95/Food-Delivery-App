@@ -13,9 +13,9 @@ const CityCollectionSquareBlock = () => {
             Bhopal, based on trends
           </p>
         </div>
-        <div className="flex flex-wrap justify-between items-center gap-8 md:gap-4">
+        <div className="flex flex-wrap justify-between items-center gap-8 md:gap-0">
           {collectionsData.map((collectionData) => (
-            <div className="w-full md:w-3/12" key={collectionData.title}>
+            <div className="w-full md:w-3/12 md:px-2" key={collectionData.title}>
               <CollectionCard
                 title={collectionData.title}
                 subtitle={collectionData.subtitle}
