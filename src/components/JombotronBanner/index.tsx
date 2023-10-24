@@ -1,3 +1,4 @@
+import SearchBar from "@/elements/SearchBar";
 import Image from "next/image";
 import React from "react";
 
@@ -28,9 +29,10 @@ const JombortoneBanner = () => {
                 }}
               />
             </div>
-            <h1 className="text-white text-4xl">
+            <h1 className="text-white text-4xl mb-4">
               Discover the best food and drinks in Bhopal
             </h1>
+            <SearchBar />
           </div>
         </div>
       </div>
