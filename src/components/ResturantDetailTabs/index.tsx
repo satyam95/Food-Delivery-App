@@ -43,7 +43,7 @@ const ResturantDetailTabs = ({
             } rounder h-[3px] z-10 mt-1 w-full border-none`}
           />
         </div>
-        {order.menuList !== undefined && (
+        {order?.menuList !== undefined && (
           <div
             className="flex flex-col items-center justify-center cursor-pointer"
             onClick={() => handleTabClick(2)}
