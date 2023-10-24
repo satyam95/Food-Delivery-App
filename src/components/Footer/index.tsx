@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-slate-100">
       <div className="pt-12 pb-6">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="mb-10 w-32" >
             <Image
               src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
@@ -20,8 +20,8 @@ const Footer = () => {
               }}
             />
           </div>
-          <div className="flex gap-8">
-            <div className="w-1/5">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-5 md:gap-20">
+            <div className="w-full">
               <h4 className="text-lg tracking-wider uppercase text-gray-800 mb-2">
                 About Zomato
               </h4>
@@ -46,7 +46,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-1/5">
+            <div className="w-full">
               <h4 className="text-lg tracking-wider uppercase text-gray-800 mb-2">
                 Zomaverse
               </h4>
@@ -68,7 +68,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-1/5">
+            <div className="w-full">
               <h4 className="text-lg tracking-wider uppercase text-gray-800 mb-2">
                 FOR RESTAURANTS
               </h4>
@@ -89,7 +89,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-1/5">
+            <div className="w-full">
               <h4 className="text-lg tracking-wider uppercase text-gray-800 mb-2">
                 Learn More
               </h4>
@@ -111,7 +111,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-1/5">
+            <div className="w-full">
               <h4 className="text-lg tracking-wider uppercase text-gray-800 mb-2">
                 Social Links
               </h4>

@@ -4,9 +4,9 @@ import CTAForm from "../CTAForm";
 
 const CTAForMobileApp = () => {
   return (
-    <section className="bg-[rgb(255,251,247)] mt-24">
-      <div className="py-24 max-w-[1100px] mx-auto">
-        <div className="flex items-center gap-14 justify-center">
+    <section className="bg-[rgb(255,251,247)] mt-20">
+      <div className="py-20 md:py-24 max-w-[1100px] mx-auto">
+        <div className="flex items-center flex-wrap gap-14 justify-center">
           <div className="">
             <Image
               src="https://b.zmtcdn.com/data/o2_assets/f773629053b24263e69f601925790f301680693809.png"
@@ -19,10 +19,10 @@ const CTAForMobileApp = () => {
               }}
             />
           </div>
-          <div>
+          <div className="px-6 md:px-0">
             <div className="pb-8">
-              <h2 className="text-4xl">Get the Zomato app</h2>
-              <p className="pt-6 text-lg text-slate-600 font-light max-w-[500px]">
+              <h2 className="text-3xl md:text-4xl">Get the Zomato app</h2>
+              <p className="pt-6 text-base md:text-lg text-slate-600 font-light max-w-[500px]">
                 We will send you a link, open it on your phone to download the
                 app
               </p>

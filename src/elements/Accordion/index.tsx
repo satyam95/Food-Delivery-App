@@ -10,7 +10,7 @@ const Accordion = ({ title, description }: AccordionPropsType) => {
   const [isActive, setIsActive] = useState(false);
   return (
     <div className="pb-4">
-      <div className="w-full bg-white py-5 px-6 border rounded">
+      <div className="w-full bg-white py-3 px-5 md:py-5 md:px-6 border rounded">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={() => setIsActive(!isActive)}

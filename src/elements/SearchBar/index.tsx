@@ -19,7 +19,7 @@ const SearchBar = () => {
   };
   return (
     <div className="p-2 border rounded bg-white w-full shadow-[rgba(28,28,28,0.08)_0px_2px_8px] max-w-[700px] h-[54px] flex items-center">
-      <div className="flex items-center justify-between w-[200px]">
+      <div className="hidden md:block flex items-center justify-between w-[200px]">
         <div className="flex items-center gap-1">
           <Image
             src="/images/location_icon.svg"
@@ -36,7 +36,7 @@ const SearchBar = () => {
           height={12}
         />
       </div>
-      <div className="h-[20px] border border-[#cfcfcf] mx-2"></div>
+      <div className="hidden md:block h-[20px] border border-[#cfcfcf] mx-2"></div>
       <div className="grow flex items-center">
         <Image
           src="/images/search_icon.svg"

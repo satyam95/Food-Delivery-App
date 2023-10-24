@@ -5,7 +5,7 @@ import React from "react";
 const OptionsFAQ = () => {
   return (
     <section className="bg-[rgb(252,252,252)]">
-      <div className="py-24 max-w-[1100px] mx-auto">
+      <div className="py-12 px-6 md:px-0 max-w-[1100px] mx-auto">
         <div className="pb-6">
           <h2 className="text-3xl">Explore options near me</h2>
         </div>

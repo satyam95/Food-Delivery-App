@@ -43,23 +43,23 @@ const CTAForm = () => {
             </label>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <div>
+        <div className="w-full flex items-center md:gap-2">
+          <div className="grow">
             {linkType === "Email" ? (
               <input
                 type="text"
                 placeholder="Email"
-                className="w-[300px] px-4 py-2 border rounded text-base font-light text-slate-600 placeholder:text-slate-600 placeholder:font-light"
+                className="w-full px-4 py-2 border rounded text-base font-light text-slate-600 placeholder:text-slate-600 placeholder:font-light"
               />
             ) : (
               <input
                 type="number"
                 placeholder="Phone Number"
-                className="w-[300px] px-4 py-2 border rounded text-base font-light text-slate-600 placeholder:text-slate-600 placeholder:font-light"
+                className="w-full md:w-[300px] px-4 py-2 border rounded text-base font-light text-slate-600 placeholder:text-slate-600 placeholder:font-light"
               />
             )}
           </div>
-          <div>
+          <div className="ml-2 md:ml-0">
             <button className="bg-primary px-4 py-2 rounded text-base font-light text-white">
               Share App Link
             </button>

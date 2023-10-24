@@ -5,7 +5,7 @@ import React from "react";
 const Header = () => {
   return (
     <header className="absolute top-0 w-full z-10">
-      <div className="max-w-[1100px] mx-auto">
+      <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
         <div className="py-5">
           <nav
             className="flex justify-between items-center"
@@ -25,7 +25,7 @@ const Header = () => {
               />
               Get the App
             </div>
-            <div>
+            <div className="hidden md:block">
               <ul className="flex gap-6">
                 <li className="text-white text-lg font-light cursor-pointer">
                   <Link href="#" tabIndex={0}>Investor Relations</Link>
