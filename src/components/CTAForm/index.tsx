@@ -60,7 +60,7 @@ const CTAForm = () => {
             )}
           </div>
           <div className="ml-2 md:ml-0">
-            <button className="bg-primary p-1 md:px-4 md:py-2 rounded leading-4 text-base font-light text-white">
+            <button className="bg-primary p-1 min-h-[42px] md:px-4 md:py-2 rounded leading-4 text-base font-light text-white">
               Share App Link
             </button>
           </div>
