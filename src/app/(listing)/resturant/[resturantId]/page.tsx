@@ -58,6 +58,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
                 alt="image"
                 fill={true}
                 className="object-cover hover:scale-105 duration-200"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
               />
             </div>
             <div className="flex flex-col gap-2.5 w-1/5">
@@ -67,6 +68,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
                   alt="image"
                   fill={true}
                   className="object-cover hover:scale-105 duration-200"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
                 />
               </div>
               <div className="relative w-full h-[180px] overflow-hidden">
@@ -75,6 +77,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
                   alt="image"
                   fill={true}
                   className="object-cover hover:scale-105 duration-200"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
                 />
               </div>
             </div>
@@ -85,6 +88,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
                   alt="image"
                   fill={true}
                   className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
                 />
               </div>
               <p className="absolute h-full w-full top-[6rem] text-base font-light text-white text-center z-20">

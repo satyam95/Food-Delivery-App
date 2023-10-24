@@ -115,6 +115,7 @@ const ResturantDetailPhotos = () => {
               alt={item.name}
               fill={true}
               className="object-cover hover:scale-105 duration-200 rounded-md"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
             />
           </div>
         ))}

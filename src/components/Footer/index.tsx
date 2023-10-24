@@ -7,12 +7,17 @@ const Footer = () => {
     <footer className="bg-slate-100">
       <div className="pt-12 pb-6">
         <div className="max-w-[1100px] mx-auto">
-          <div className="mb-10">
+          <div className="mb-10 w-32" >
             <Image
               src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
               alt="footer-logo"
-              width={128}
-              height={32}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
             />
           </div>
           <div className="flex gap-8">
@@ -43,7 +48,7 @@ const Footer = () => {
             </div>
             <div className="w-1/5">
               <h4 className="text-lg tracking-wider uppercase text-gray-800 mb-2">
-              Zomaverse
+                Zomaverse
               </h4>
               <ul>
                 <li className="text-base text-gray-600 font-light mb-1">
@@ -86,7 +91,7 @@ const Footer = () => {
             </div>
             <div className="w-1/5">
               <h4 className="text-lg tracking-wider uppercase text-gray-800 mb-2">
-              Learn More
+                Learn More
               </h4>
               <ul>
                 <li className="text-base text-gray-600 font-light mb-1">
@@ -111,8 +116,18 @@ const Footer = () => {
                 Social Links
               </h4>
               <div className="flex flex-col gap-2 pt-2">
-                <Image src="https://b.zmtcdn.com/data/webuikit/9f0c85a5e33adb783fa0aef667075f9e1556003622.png" alt="app store logo" width={137} height={40} />
-                <Image src="https://b.zmtcdn.com/data/webuikit/23e930757c3df49840c482a8638bf5c31556001144.png" alt="play store logo" width={137} height={40} />
+                <Image
+                  src="https://b.zmtcdn.com/data/webuikit/9f0c85a5e33adb783fa0aef667075f9e1556003622.png"
+                  alt="app store logo"
+                  width={137}
+                  height={40}
+                />
+                <Image
+                  src="https://b.zmtcdn.com/data/webuikit/23e930757c3df49840c482a8638bf5c31556001144.png"
+                  alt="play store logo"
+                  width={137}
+                  height={40}
+                />
               </div>
             </div>
           </div>

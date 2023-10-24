@@ -27,6 +27,7 @@ const DiningOut: React.FC<RestaurantProps> = ({ restaurant }) => {
                         alt={collectionData.title}
                         fill={true}
                         className="object-cover rounded-2xl"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
                       />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full overlay-bg rounded-2xl">
@@ -70,6 +71,7 @@ const DiningOut: React.FC<RestaurantProps> = ({ restaurant }) => {
                 alt="ad banner"
                 fill={true}
                 className="object-cover rounded-2xl"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
               />
             </div>
           </div>

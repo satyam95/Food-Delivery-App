@@ -13,6 +13,10 @@ const CTAForMobileApp = () => {
               alt="mobile app screenshort"
               height={500}
               width={300}
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
           </div>
           <div>

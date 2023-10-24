@@ -11,6 +11,7 @@ const JombortoneBanner = () => {
             alt="image"
             fill={true}
             className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
           />
         </div>
         <div className="absolute w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -21,6 +22,10 @@ const JombortoneBanner = () => {
                 alt="image"
                 height={84}
                 width={300}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
             <h1 className="text-white text-4xl">

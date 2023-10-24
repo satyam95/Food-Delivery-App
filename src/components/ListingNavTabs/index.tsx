@@ -25,16 +25,23 @@ const ListingNavTabs = ({ slug }: { slug: string }) => {
                         : "h-[5rem] w-[5rem] rounded-full flex items-center justify-center bg-[rgb(248,248,248)]"
                     }
                   >
-                    <Image
-                      src={
-                        slug === "delivery"
-                          ? "https://b.zmtcdn.com/data/o2_assets/c0bb85d3a6347b2ec070a8db694588261616149578.png"
-                          : "https://b.zmtcdn.com/data/o2_assets/246bbd71fbba420d5996452be3024d351616150055.png"
-                      }
-                      alt="delivery-icon"
-                      width={50}
-                      height={50}
-                    />
+                    <div className="w-12">
+                      <Image
+                        src={
+                          slug === "delivery"
+                            ? "https://b.zmtcdn.com/data/o2_assets/c0bb85d3a6347b2ec070a8db694588261616149578.png"
+                            : "https://b.zmtcdn.com/data/o2_assets/246bbd71fbba420d5996452be3024d351616150055.png"
+                        }
+                        alt="delivery-icon"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                        }}
+                      />
+                    </div>
                   </div>
                   <div
                     className={
@@ -64,16 +71,23 @@ const ListingNavTabs = ({ slug }: { slug: string }) => {
                         : "h-[5rem] w-[5rem] rounded-full flex items-center justify-center bg-[rgb(248,248,248)]"
                     }
                   >
-                    <Image
-                      src={
-                        slug === "dine-out"
-                          ? "https://b.zmtcdn.com/data/o2_assets/30fa0a844f3ba82073e5f78c65c18b371616149662.png"
-                          : "https://b.zmtcdn.com/data/o2_assets/78d25215ff4c1299578ed36eefd5f39d1616149985.png"
-                      }
-                      alt="dine-out-icon"
-                      width={50}
-                      height={50}
-                    />
+                    <div className="w-12">
+                      <Image
+                        src={
+                          slug === "dine-out"
+                            ? "https://b.zmtcdn.com/data/o2_assets/30fa0a844f3ba82073e5f78c65c18b371616149662.png"
+                            : "https://b.zmtcdn.com/data/o2_assets/78d25215ff4c1299578ed36eefd5f39d1616149985.png"
+                        }
+                        alt="dine-out-icon"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                        }}
+                      />
+                    </div>
                   </div>
                   <div
                     className={
@@ -103,16 +117,23 @@ const ListingNavTabs = ({ slug }: { slug: string }) => {
                         : "h-[5rem] w-[5rem] rounded-full flex items-center justify-center bg-[rgb(248,248,248)]"
                     }
                   >
-                    <Image
-                      src={
-                        slug === "nightlife"
-                          ? "https://b.zmtcdn.com/data/o2_assets/855687dc64a5e06d737dae45b7f6a13b1616149818.png"
-                          : "https://b.zmtcdn.com/data/o2_assets/01040767e4943c398e38e3592bb1ba8a1616150142.png"
-                      }
-                      alt="nightlife-icon"
-                      width={50}
-                      height={50}
-                    />
+                    <div className="w-12">
+                      <Image
+                        src={
+                          slug === "nightlife"
+                            ? "https://b.zmtcdn.com/data/o2_assets/855687dc64a5e06d737dae45b7f6a13b1616149818.png"
+                            : "https://b.zmtcdn.com/data/o2_assets/01040767e4943c398e38e3592bb1ba8a1616150142.png"
+                        }
+                        alt="nightlife-icon"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                        }}
+                      />
+                    </div>
                   </div>
                   <div
                     className={

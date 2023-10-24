@@ -19,12 +19,16 @@ const VenueCategoryCard = ({
     <div>
       <Link href={url}>
         <div className="relative cursor-pointer hover:scale-105 transition duration-150 ease-in delay-0">
-          <div className="relaive w-full h-[240px]">
+          <div className="relative w-full h-[240px]">
             <Image
               src={img}
               alt={title}
               fill={true}
-              className="object-cover rounded-2xl"
+              className="rounded-2xl"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
+              style={{
+                objectFit: 'cover',
+              }}
             />
           </div>
           <div className="bg-white absolute bottom-0 border border-[#e8e8e8] px-5 pt-2.5 pb-4 w-full rounded-b-xl">

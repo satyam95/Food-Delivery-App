@@ -10,12 +10,16 @@ interface CollectionCardPropsType {
 const CollectionCard = ({ title, subtitle, img }: CollectionCardPropsType) => {
   return (
     <div className="relative cursor-pointer">
-      <div className="relaive w-full h-[240px]">
+      <div className="relative w-full h-[240px]">
         <Image
           src={img}
           alt={title}
           fill={true}
-          className="object-cover rounded-2xl"
+          className="rounded-2xl"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
+          style={{
+            objectFit: 'cover',
+          }}
         />
       </div>
       <div className="absolute top-0 left-0 w-full h-full overlay-bg rounded-2xl">

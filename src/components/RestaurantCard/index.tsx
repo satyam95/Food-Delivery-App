@@ -40,6 +40,7 @@ const RestaurantCard = ({
               alt={name}
               fill={true}
               className="object-cover rounded-3xl"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
             />
             {bulkOffers.length > 0
               ? bulkOffers.map((bulkOffer) => (

@@ -26,6 +26,7 @@ const MenuItemCard = ({
             alt={name}
             fill={true}
             className="object-cover rounded-2xl z-10"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
           />
         ) : (
           <Image
@@ -33,6 +34,7 @@ const MenuItemCard = ({
             alt="dummy food item"
             fill={true}
             className="object-cover rounded-2xl z-10"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
           />
         )}
         <Image
@@ -41,6 +43,7 @@ const MenuItemCard = ({
           width={14}
           height={14}
           className="absolute top-2 right-2 z-20 bg-white rounded"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
         />
       </div>
       <div className="flex flex-col gap-3 pt-1.5">

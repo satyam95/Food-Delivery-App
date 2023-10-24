@@ -62,6 +62,7 @@ const Search = () => {
           alt="live-icon"
           width={264}
           height={165}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
         />
         <p className="text-[rgb(79,79,79)] text-[13px]">
           No items found that match your search/filter.

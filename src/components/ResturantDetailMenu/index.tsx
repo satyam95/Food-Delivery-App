@@ -37,6 +37,7 @@ const ResturantDetailMenu = ({
               alt="menu"
               fill={true}
               className="object-cover"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
             />
           </div>
         </div>

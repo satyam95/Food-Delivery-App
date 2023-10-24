@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -23,13 +23,18 @@ const ListingHeader = () => {
       <header className="py-2">
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-center justify-between">
-            <div>
+            <div className="w-32">
               <Link href="/">
                 <Image
                   src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
                   alt="footer-logo"
-                  width={128}
-                  height={32}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
                 />
               </Link>
             </div>
