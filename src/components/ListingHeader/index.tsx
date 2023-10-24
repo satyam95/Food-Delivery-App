@@ -7,7 +7,7 @@ const ListingHeader = () => {
   return (
     <>
       <header className="py-2">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="flex items-center justify-between">
             <div className="w-32">
               <Link href="/">
@@ -24,13 +24,19 @@ const ListingHeader = () => {
                 />
               </Link>
             </div>
-            <SearchBar/>
+            <div className="hidden md:flex justify-center grow">
+            <SearchBar />
+            </div>
+              
             <nav>
               <ul className="flex items-center gap-4">
                 <li className="text-lg text-gray-600 font-light">Log in</li>
                 <li className="text-lg text-gray-600 font-light">Sign up</li>
               </ul>
             </nav>
+          </div>
+          <div className="pt-4 md:pt-0 md:hidden">
+            <SearchBar />
           </div>
         </div>
       </header>

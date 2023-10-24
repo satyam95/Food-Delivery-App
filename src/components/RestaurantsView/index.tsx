@@ -232,7 +232,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
   return (
     <>
       <section className="bg-white sticky top-0 z-10">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="py-6 flex items-center gap-4 flex-wrap">
             <button
               onClick={openModal}
@@ -303,9 +303,9 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
       </section>
       {children}
       <section className="bg-white">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="pt-8 pb-14">
-            <h2 className="text-3xl font-normal text-gray-900 pb-8">{title}</h2>
+            <h2 className="text-3xl font-normal text-gray-900 pb-6 md:pb-8">{title}</h2>
             <RestaurantsGridView
               restaurantsSortedData={restaurantsSortedData}
             />
@@ -320,10 +320,10 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
           <div className="fixed top-0 left-0 w-full h-full bg-[rgb(28,28,28)] z-30 opacity-90"></div>
           <div
             onClick={(e) => e.stopPropagation()}
-            className="z-50 bg-white w-6/12 h-4/5 opacity-100 block shadow-[rgba(28,28,28,0.15)_0px_1.2rem_7rem] rounded-lg"
+            className="z-50 bg-white w-11/12 md:w-6/12 h-5/6 md:h-4/5 opacity-100 block shadow-[rgba(28,28,28,0.15)_0px_1.2rem_7rem] rounded-lg"
           >
             <div className="flex flex-col h-full">
-              <div className="flex justify-between items-center py-5 px-6">
+              <div className="flex justify-between items-center py-3 px-4 md:py-5 md:px-6">
                 <h2 className="text-[rgb(28,28,28)] text-2xl">Filters</h2>
                 <Image
                   src="/images/close_icon.svg"
@@ -336,13 +336,13 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
               </div>
               <div className="border-t border-b border-[rgb(207,207,207)] grow">
                 <div className="flex h-full flex-row">
-                  <div className="h-full w-44 bg-[#f5f5f5]">
+                  <div className="h-full w-full max-w-[120px] md:w-44 bg-[#f5f5f5]">
                     <div
                       onClick={() => setTabState(1)}
                       className={
                         tabState === 1
-                          ? "w-full bg-white pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
-                          : "w-full pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
+                          ? "w-full bg-white pl-2 md:pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
+                          : "w-full pl-3 md:pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
                       }
                     >
                       <p
@@ -358,8 +358,8 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                       onClick={() => setTabState(2)}
                       className={
                         tabState === 2
-                          ? "w-full bg-white pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
-                          : "w-full pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
+                          ? "w-full bg-white pl-2 md:pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
+                          : "w-full pl-3 md:pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
                       }
                     >
                       <p
@@ -381,8 +381,8 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                       onClick={() => setTabState(3)}
                       className={
                         tabState === 3
-                          ? "w-full bg-white pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
-                          : "w-full pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
+                          ? "w-full bg-white pl-2 md:pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
+                          : "w-full pl-3 md:pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
                       }
                     >
                       <p
@@ -397,8 +397,8 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                       onClick={() => setTabState(4)}
                       className={
                         tabState === 4
-                          ? "w-full bg-white pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
-                          : "w-full pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
+                          ? "w-full bg-white pl-2 md:pl-5 text-left h-16 flex flex-col justify-center cursor-pointer border-l-[3px] border-[rgb(239,79,95)]"
+                          : "w-full pl-3 md:pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
                       }
                     >
                       <p
@@ -412,7 +412,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                   </div>
                   <div className="h-full grow">
                     <div className={tabState === 1 ? "block" : "hidden"}>
-                      <div className="p-5 pt-6 flex flex-col gap-3">
+                      <div className="p-4 md:p-5 md:pt-6 flex flex-col gap-3">
                         <RadioField
                           labelText="Popularity"
                           id="popularity_option"
@@ -457,7 +457,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                     </div>
                     <div className={tabState === 2 ? "block grow" : "hidden"}>
                       <div className="flex">
-                        <div className="p-5 pt-6 grid grid-cols-2 gap-4 overflow-y-auto w-full max-h-[22.5rem] no-scrollbar">
+                        <div className="p-4 md:p-5 md:pt-6 grid grid-cols-2 gap-4 overflow-y-auto w-full max-h-[21rem] md:max-h-[22.5rem] no-scrollbar">
                           {uniqueCuisinesList.map((cuisine, index) => (
                             <CheckBoxField
                               key={index}
@@ -470,7 +470,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                       </div>
                     </div>
                     <div className={tabState === 3 ? "block h-full" : "hidden"}>
-                      <div className="p-5 pt-6 w-full h-full">
+                      <div className="p-4 md:p-5 md:pt-6 w-full h-full">
                         <div className="flex flex-col h-full">
                           <div className="pt-4">
                             <div className="text-[rgb(105,105,105)] text-sm">
@@ -489,7 +489,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                       </div>
                     </div>
                     <div className={tabState === 4 ? "block h-full" : "hidden"}>
-                      <div className="p-5 pt-6 w-full h-full">
+                      <div className="p-4 md:p-5 md:pt-6 w-full h-full">
                         <div className="flex flex-col h-full">
                           <div className="pt-4">
                             <div className="text-[rgb(105,105,105)] text-sm">
@@ -512,7 +512,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                   </div>
                 </div>
               </div>
-              <div className="py-4 px-6 flex justify-end gap-4 items-center">
+              <div className="py-3 px-4 md:py-5 md:px-6 flex justify-end gap-4 items-center">
                 <button className="px-5 py-2 text-base font-light">
                   Clear all
                 </button>

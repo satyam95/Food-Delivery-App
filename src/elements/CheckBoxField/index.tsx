@@ -20,7 +20,7 @@ const CheckBoxField = ({ labelText, checked, onChange }: CheckBoxPropsType) => {
       />
       <label
         htmlFor={labelText}
-        className="text-base text-[rgb(28,28,28)] pl-2 font-light"
+        className="text-sm md:text-base text-[rgb(28,28,28)] pl-1 md:pl-2 font-light"
       >
         {labelText}
       </label>

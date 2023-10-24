@@ -7,7 +7,7 @@ const ListingNavTabs = ({ slug }: { slug: string }) => {
   return (
     <div className="mt-6">
       <div className="shadow-nav">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="flex items-center">
             <div>
               <Link href="/bhopal/delivery">
@@ -46,8 +46,8 @@ const ListingNavTabs = ({ slug }: { slug: string }) => {
                   <div
                     className={
                       slug === "delivery"
-                        ? "text-xl text-primary ml-4 font-medium"
-                        : "text-xl ml-4 font-medium text-gray-600"
+                        ? "hidden md:block text-xl text-primary ml-4 font-medium"
+                        : "hidden md:block text-xl ml-4 font-medium text-gray-600"
                     }
                   >
                     Delivery
@@ -92,8 +92,8 @@ const ListingNavTabs = ({ slug }: { slug: string }) => {
                   <div
                     className={
                       slug === "dine-out"
-                        ? "text-xl text-primary ml-4 font-medium"
-                        : "text-xl ml-4 font-medium text-gray-600"
+                        ? "hidden md:block text-xl text-primary ml-4 font-medium"
+                        : "hidden md:block text-xl ml-4 font-medium text-gray-600"
                     }
                   >
                     Dine Out
@@ -138,8 +138,8 @@ const ListingNavTabs = ({ slug }: { slug: string }) => {
                   <div
                     className={
                       slug === "nightlife"
-                        ? "text-xl ml-4 font-medium text-primary"
-                        : "text-xl ml-4 font-medium text-gray-600"
+                        ? "hidden md:block text-xl ml-4 font-medium text-primary"
+                        : "hidden md:block text-xl ml-4 font-medium text-gray-600"
                     }
                   >
                     Nightlife

@@ -49,9 +49,9 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
 
   return (
     <div className="border-t">
-      <div className="max-w-[1100px] mx-auto">
+      <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
         <div className="py-10">
-          <section className="flex items-center gap-2.5">
+          <section className="hidden md:flex items-center gap-2.5">
             <div className="relative h-[370px] w-3/5 overflow-hidden">
               <Image
                 src={photoUrls[0]}
@@ -96,10 +96,10 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
               </p>
             </div>
           </section>
-          <section className="py-4">
-            <div className="flex justify-between items-center">
+          <section className="md:py-4">
+            <div className="flex md:justify-between md:items-center flex-col gap-4 md:flex-row">
               <h1 className="text-3xl">{data?.info?.name}</h1>
-              <div className="flex items-center gap-20">
+              <div className="flex md:items-center gap-4 md:gap-20">
                 <ReviewBlock
                   reviewRating={data?.info.ratingNew.ratings.DINING.rating}
                   reviewCount={data?.info.ratingNew.ratings.DINING.reviewCount}
@@ -116,7 +116,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
                 />
               </div>
             </div>
-            <div className="pt-2">
+            <div className="pt-4 md:pt-2">
               <div className="text-gray-600 font-light text-base">
                 {data?.info.cuisine.map((item) => item.name).join(", ")}
               </div>

@@ -5,14 +5,14 @@ import InspirationFoodCard from "../InspirationFoodCard";
 const InspirationBlock = () => {
   return (
     <section className="bg-[rgb(248,248,248)]">
-      <div className="max-w-[1100px] mx-auto">
-        <div className="py-14">
-          <h2 className="text-3xl font-normal text-gray-900 pb-8">
+      <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
+        <div className="py-12 md:py-14">
+          <h2 className="text-3xl font-normal text-gray-900 pb-4 md:pb-8">
             Inspiration for your first order
           </h2>
-          <div className="flex items-center">
+          <div className="grid grid-cols-3 gap-8 md:gap-2 md:grid-cols-6">
             {InspirationData.map((item) => (
-              <div className="w-1/6" key={item.id}>
+              <div key={item.id}>
                 <InspirationFoodCard name={item.title} image={item.image} />
               </div>
             ))}

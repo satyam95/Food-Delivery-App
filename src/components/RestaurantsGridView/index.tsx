@@ -62,7 +62,7 @@ const RestaurantsGridView: React.FC<RestaurantsGridViewProps> = ({
             </div>
           }
         >
-          <div className="flex items-center gap-4 flex-wrap">
+          <div className="flex items-center justify-center gap-4 flex-wrap">
             {restaurantsSortedData.slice(0, items).map((restaurant) => (
               <RestaurantCard
                 key={restaurant.info.resId}

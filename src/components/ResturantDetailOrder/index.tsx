@@ -81,7 +81,7 @@ const ResturantDetailOrder = ({ order }: any) => {
 
   return (
     <div className="flex" ref={divRef}>
-      <div className="w-[200px]">
+      <div className="hidden md:block md:w-[200px]">
         <div className="sticky top-14 overflow-y-auto overflow-x-hidden h-full max-h-[calc(100vh-54px)] no-scrollbar">
           {filteredMenuList.map((item: any) => (
             <div
@@ -99,10 +99,10 @@ const ResturantDetailOrder = ({ order }: any) => {
           ))}
         </div>
       </div>
-      <div className="pl-5 grow border-l border-[rgb(232,232,232)]">
-        <div className="flex items-center justify-between">
+      <div className="md:pl-5 grow md:border-l md:border-[rgb(232,232,232)]">
+        <div className="flex md:items-center justify-between flex-wrap flex-col md:flex-row gap-2 md:gap-0">
           <div className="text-2xl text-[rgb(28,28,28)">Order Online</div>
-          <div className="p-2 border rounded w-full shadow-[rgba(28,28,28,0.08)_0px_2px_8px] max-w-[250px] h-[48px] flex items-center">
+          <div className="p-2 border rounded w-full shadow-[rgba(28,28,28,0.08)_0px_2px_8px] md:max-w-[250px] h-[48px] flex items-center">
             <div className="grow flex items-center">
               <Image
                 src="/images/search_icon.svg"
@@ -120,7 +120,7 @@ const ResturantDetailOrder = ({ order }: any) => {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="pt-2 md:pt-0 flex items-center gap-3">
           <div className="flex items-center gap-1.5">
             <Image
               src="/images/live_icon.svg"
@@ -145,7 +145,7 @@ const ResturantDetailOrder = ({ order }: any) => {
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 mt-4">
+        <div className="flex items-center gap-2 mt-4 flex-wrap">
           {order?.menuList?.promosOnMenu?.promos.map((promo: any) => (
             <CouponCard
               key={promo.offer.id}

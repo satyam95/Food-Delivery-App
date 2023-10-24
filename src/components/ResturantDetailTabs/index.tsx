@@ -33,7 +33,7 @@ const ResturantDetailTabs = ({
               activeTab === 1
                 ? "text-[rgb(239,79,95)]"
                 : "text-[rgb(105,105,105)]"
-            } text-lg px-4 pt-1 font-light`}
+            } text-lg px-2 md:px-4 pt-1 font-light`}
           >
             Overview
           </h2>
@@ -53,7 +53,7 @@ const ResturantDetailTabs = ({
                 activeTab === 2
                   ? "text-[rgb(239,79,95)]"
                   : "text-[rgb(105,105,105)]"
-              } text-lg px-4 pt-1 font-light`}
+              } text-lg px-2 md:px-4 pt-1 font-light`}
             >
               Order Online
             </h2>
@@ -74,7 +74,7 @@ const ResturantDetailTabs = ({
                 activeTab === 3
                   ? "text-[rgb(239,79,95)]"
                   : "text-[rgb(105,105,105)]"
-              } text-lg px-4 pt-1 font-light`}
+              } text-lg px-2 md:px-4 pt-1 font-light`}
             >
               Reviews
             </h2>
@@ -95,7 +95,7 @@ const ResturantDetailTabs = ({
                 activeTab === 5
                   ? "text-[rgb(239,79,95)]"
                   : "text-[rgb(105,105,105)]"
-              } text-lg px-4 pt-1 font-light`}
+              } text-lg px-2 md:px-4 pt-1 font-light`}
             >
               Menu
             </h2>

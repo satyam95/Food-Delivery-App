@@ -7,7 +7,7 @@ import React from "react";
 const ResturantDetailOverview = ({ cuisine, safetyCheck, cft }: TabOverType) => {
   return (
     <div className="flex flex-wrap">
-      <div className="w-2/3">
+      <div className="w-full md:w-2/3">
         <div className="text-2xl text-[rgb(28,28,28)">About this place</div>
         {safetyCheck?.length === 0 ? "" :(
           <div className="pt-4 pl-1">
@@ -18,7 +18,7 @@ const ResturantDetailOverview = ({ cuisine, safetyCheck, cft }: TabOverType) => 
         )}
         <div className="pt-6">
           <h3 className="text-xl">Cuisines</h3>
-          <div className="flex gap-4 pt-2">
+          <div className="flex flex-wrap gap-4 pt-2">
             {cuisine?.map((item) => (
               <div key={item.name} className="text-base font-light leading-4 text-[rgb(17,145,153)] border border-[rgb(207,207,207)] p-2.5 rounded-[59px] cursor-pointer">
                 {item.name}
@@ -74,7 +74,7 @@ const ResturantDetailOverview = ({ cuisine, safetyCheck, cft }: TabOverType) => 
           </div>
         </div>
       </div>
-      <div className="w-1/3">
+      <div className="hidden md:block md:w-1/3">
         <div className="border rounded p-6 w-full border-[rgb(248,248,248)] shadow-[rgba(28,28,28,0.12)_0px_2px_8px]">
           <div>
             <h3 className="text-xl text-[rgb(28,28,28)]">Call</h3>

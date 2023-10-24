@@ -19,7 +19,7 @@ const SearchBar = () => {
   };
   return (
     <div className="p-2 border rounded bg-white w-full shadow-[rgba(28,28,28,0.08)_0px_2px_8px] max-w-[700px] h-[54px] flex items-center">
-      <div className="hidden md:block flex items-center justify-between w-[200px]">
+      <div className="hidden md:flex items-center justify-between w-[200px]">
         <div className="flex items-center gap-1">
           <Image
             src="/images/location_icon.svg"

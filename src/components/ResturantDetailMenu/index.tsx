@@ -27,7 +27,7 @@ const ResturantDetailMenu = ({
   return (
     <>
       <div className="text-2xl text-[rgb(28,28,28)">{restaurantName} Menu</div>
-      <div className="w-1/4 pt-6">
+      <div className="w-8/12 md:w-1/4 pt-6">
         <div className="w-full" onClick={() => setOpen(true)}>
           <div className="first-bg-menu"></div>
           <div className="second-bg-menu"></div>
