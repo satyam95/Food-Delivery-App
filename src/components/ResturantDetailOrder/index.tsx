@@ -47,7 +47,7 @@ const ResturantDetailOrder = ({ order }: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [order?.menuList?.menus]);
 
   const filterMenuList = (menuList: any, searchQuery: string) => {
     if (!searchQuery) {
@@ -86,7 +86,7 @@ const ResturantDetailOrder = ({ order }: any) => {
           {filteredMenuList.map((item: any) => (
             <div
               key={item.menu.id}
-              className={`text-base py-3 px-1 font-light ${
+              className={`text-base py-3 px-1 font-light cursor-pointer ${
                 activeCategory === item.menu.id
                   ? "text-[rgb(239,79,95)] font-medium border-r-4 border-[rgb(239,79,95)] linear-bg-pink"
                   : "text-[rgb(28,28,28)]"

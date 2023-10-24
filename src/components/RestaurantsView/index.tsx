@@ -224,7 +224,8 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
 
   useEffect(() => {
     applySorting();
-  }, [filterTipValue.rating, filterTipValue.cuisine, filterTipValue.cost]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterTipValue.rating, filterTipValue.cuisine, filterTipValue.cost ]);
 
   const uniqueCuisinesList = getUniqueCuisines(restaurant);
 

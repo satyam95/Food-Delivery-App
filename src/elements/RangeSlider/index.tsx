@@ -27,7 +27,7 @@ const RangeSlider = ({
         />
         <div className="flex justify-between absolute top-0 w-full z-10 left-0">
           {marks.map((mark, index) => (
-            <div className="w-5" onClick={() => handleMarkerClick(index)}>
+            <div key={index} className="w-5" onClick={() => handleMarkerClick(index)}>
               <span
                 className={`block h-5 w-5 -mt-2 rounded-full border-[6px] border-[rgb(255,255,255)] ${
                   index < value ? "bg-[rgb(232,232,232)]" : "bg-primary"
