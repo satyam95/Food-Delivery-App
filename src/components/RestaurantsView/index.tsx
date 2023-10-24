@@ -1,16 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import InspirationFoodCard from "../InspirationFoodCard";
 import Image from "next/image";
 import RestaurantCard from "../RestaurantCard";
-import { Restaurant, RestaurantProps } from "@/types/types";
-import { InspirationData } from "@/data/venueCategories";
+import { Restaurant, RestaurantsViewPropsType } from "@/types/types";
 import RadioField from "@/elements/RadioField";
 import RangeSlider from "@/elements/RangeSlider";
 import MultiRangeSlider from "@/elements/MultiRangeSlider";
 import CheckBoxField from "@/elements/CheckBoxField";
 
-const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
+const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
+  restaurant,
+  children,
+  title,
+}) => {
   const initialFilterTipValue: {
     cost: [number, number];
     cuisine: string[];
@@ -298,28 +300,11 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
           </div>
         </div>
       </section>
-      <section className="bg-[rgb(248,248,248)]">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="py-14">
-            <h2 className="text-3xl font-normal text-gray-900 pb-8">
-              Inspiration for your first order
-            </h2>
-            <div className="flex items-center">
-              {InspirationData.map((item) => (
-                <div className="w-1/6" key={item.id}>
-                  <InspirationFoodCard name={item.title} image={item.image} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {children}
       <section className="bg-white">
         <div className="max-w-[1100px] mx-auto">
           <div className="pt-8 pb-14">
-            <h2 className="text-3xl font-normal text-gray-900 pb-8">
-              Delivery Restaurants in Bhopal
-            </h2>
+            <h2 className="text-3xl font-normal text-gray-900 pb-8">{title}</h2>
             <div className="flex items-center gap-4 flex-wrap">
               {restaurantsSortedData.length === 0 ? (
                 <div className="flex flex-col gap-4 items-center py-4">
@@ -580,4 +565,4 @@ const DeliveryOnline: React.FC<RestaurantProps> = ({ restaurant }) => {
   );
 };
 
-export default DeliveryOnline;
+export default RestaurantsView;

@@ -2,7 +2,7 @@ import React from "react";
 import CollectionCard from "../CollectionCard";
 import { collectionsData } from "@/data/venueCategories";
 
-const CityCollectionBlock = () => {
+const CityCollectionSquareBlock = () => {
   return (
     <section className="my-24">
       <div className="max-w-[1100px] mx-auto">
@@ -29,4 +29,4 @@ const CityCollectionBlock = () => {
   );
 };
 
-export default CityCollectionBlock;
+export default CityCollectionSquareBlock;

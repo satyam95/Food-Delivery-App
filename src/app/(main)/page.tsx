@@ -1,5 +1,5 @@
 import CTAForMobileApp from "@/components/CTAForMobileApp";
-import CityCollectionBlock from "@/components/CityCollectionBlock";
+import CityCollectionSquareBlock from "@/components/CityCollectionSquareBlock";
 import JombortoneBanner from "@/components/JombotronBanner";
 import OptionsFAQ from "@/components/OptionsFAQ";
 import VenueCategoryBlock from "@/components/VenueCategoryBlock";
@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <JombortoneBanner />
       <VenueCategoryBlock />
-      <CityCollectionBlock />
+      <CityCollectionSquareBlock />
       <CTAForMobileApp />
       <OptionsFAQ />
     </>

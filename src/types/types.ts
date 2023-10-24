@@ -172,6 +172,12 @@ export interface RestaurantProps {
   restaurant: Restaurant[]; // Correctly typed restaurant prop
 }
 
+export interface RestaurantsViewPropsType {
+  restaurant: Restaurant[];
+  children: React.ReactNode;
+  title: string;
+}
+
 export interface TabOverType {
   cuisine:
     | {
@@ -189,7 +195,7 @@ export interface TabOverType {
         text: string;
       }[]
     | undefined;
-    cft: string | undefined;
+  cft: string | undefined;
 }
 
 export interface TabType {
@@ -209,9 +215,9 @@ export interface TabType {
         text: string;
       }[]
     | undefined;
-    cft: string | undefined;
-    order: any | undefined;
-    reviews: any | undefined;
-    restaurantName: string | undefined;
-    menu: any | undefined;
+  cft: string | undefined;
+  order: any | undefined;
+  reviews: any | undefined;
+  restaurantName: string | undefined;
+  menu: any | undefined;
 }
