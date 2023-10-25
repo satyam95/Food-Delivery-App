@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import CouponCard from ".";
+import CouponCard from "./index";
 
 describe("Coupon Card", () => {
   const title = "Example title";

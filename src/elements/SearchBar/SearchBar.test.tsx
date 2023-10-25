@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import SearchBar from ".";
+import SearchBar from "./index";
 
 jest.mock("next/navigation", () => {
   return {

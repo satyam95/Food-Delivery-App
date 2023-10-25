@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import NumericRating from ".";
+import NumericRating from "./index";
 
 describe("Numeric Rating", () => {
   it("render numeric rating small type", () => {

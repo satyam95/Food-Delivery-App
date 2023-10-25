@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import RangeSlider from ".";
+import RangeSlider from "./index";
 
 describe("RangeSlider", () => {
   it("renders correctly and handles slider change and marker click", () => {

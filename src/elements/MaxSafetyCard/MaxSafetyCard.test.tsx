@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import MaxSafetyCard from ".";
+import MaxSafetyCard from "./index";
 
 describe("Max Safety Card", () => {
   render(<MaxSafetyCard />);

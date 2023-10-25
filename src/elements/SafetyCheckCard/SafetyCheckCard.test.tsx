@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import SafetyCheckCard from ".";
+import SafetyCheckCard from "./index";
 
 describe("SafetyCheckCard", () => {
   it("renders correctly with image and text", () => {

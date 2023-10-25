@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import CheckBoxField from ".";
+import CheckBoxField from "./index";
 
 const mockOnChange = jest.fn();
 

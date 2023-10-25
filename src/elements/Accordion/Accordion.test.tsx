@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Accordion from ".";
+import Accordion from "./index";
 
 describe("Accordion", () => {
   const testData = {

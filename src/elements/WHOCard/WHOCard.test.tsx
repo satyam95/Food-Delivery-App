@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import WHOCard from '.';
+import WHOCard from './index';
 
 describe('WHOCard Component', () => {
   it('renders the WHOCard component correctly', () => {

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ButtonWithoutBorder from ".";
+import ButtonWithoutBorder from "./index";
 
 describe("Button with Icon", () => {
   const testData = {

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import RadioField from ".";
+import RadioField from "./index";
 
 describe("RadioField", () => {
   it("renders correctly and handles radio button change", () => {

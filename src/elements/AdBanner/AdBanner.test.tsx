@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import AdBanner from ".";
+import AdBanner from "./index";
 
 describe("AdBanner", () => {
   it("Render AdBanner", () => {

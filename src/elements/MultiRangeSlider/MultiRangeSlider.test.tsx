@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import MultiRangeSlider from ".";
+import MultiRangeSlider from "./index";
 
 const mockSetCostValue = jest.fn();
 
