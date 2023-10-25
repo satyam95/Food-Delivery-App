@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React from "react";
 
-
-
 const NumericRating = ({
   rating,
   type,
@@ -12,7 +10,10 @@ const NumericRating = ({
 }) => {
   return (
     <div
-      className={`${rating === "-" ? "bg-[rgb(156,156,156)]" : "bg-[rgb(38,126,62)]"} inline-flex items-center rounded-md ${
+      data-testid="rating-element"
+      className={`${
+        rating === "-" ? "bg-[rgb(156,156,156)]" : "bg-[rgb(38,126,62)]"
+      } inline-flex items-center rounded-md ${
         type === "large" ? "gap-1.5 p-1.5" : "gap-1 py-1 px-1.5"
       }`}
     >

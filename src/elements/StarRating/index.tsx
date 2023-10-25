@@ -19,7 +19,7 @@ const StarRating = ({ rating }: StarRatingPropsType) => {
         <Image
           key={i}
           src="/images/star_full_icon.svg"
-          alt="live-icon"
+          alt="star-full"
           width={14}
           height={14}
         />
@@ -31,7 +31,7 @@ const StarRating = ({ rating }: StarRatingPropsType) => {
         <Image
           key={fullStars}
           src="/images/star_half_icon.svg"
-          alt="live-icon"
+          alt="star-half"
           width={14}
           height={14}
         />
@@ -43,7 +43,7 @@ const StarRating = ({ rating }: StarRatingPropsType) => {
         <Image
           key={fullStars + i + (halfStar ? 1 : 0)}
           src="/images/star_empty_icon.svg"
-          alt="live-icon"
+          alt="star-empty"
           width={14}
           height={14}
         />
