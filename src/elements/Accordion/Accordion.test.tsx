@@ -7,16 +7,14 @@ describe("Accordion", () => {
     description: "Test Description",
   };
 
-  beforeEach(() => {
-    render(<Accordion title={testData.title} description={testData.description} />);
-  });
-
   it("Accordion default/close state", () => {
+    render(<Accordion title={testData.title} description={testData.description} />);
     const title = screen.getByText(testData.title);
     expect(title).toBeInTheDocument();
   });
 
   it("Accordion active/open state", () => {
+    render(<Accordion title={testData.title} description={testData.description} />);
     const title = screen.getByText(testData.title);
     const description = screen.queryByText(testData.description);
     expect(description).not.toBeInTheDocument();
