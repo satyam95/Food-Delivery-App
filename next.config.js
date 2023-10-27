@@ -4,7 +4,7 @@ const nextConfig = {
     // Exclude test files or directories using a regular expression pattern
     if (!isServer) {
       config.module.rules.push({
-        test: /\.(test|spec)\.js$/,
+        test: /\.(test|spec)\.tsx$/,
         use: "ignore-loader",
       });
     }
