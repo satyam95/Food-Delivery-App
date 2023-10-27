@@ -52,7 +52,7 @@ const StarRating = ({ rating }: StarRatingPropsType) => {
 
     return stars;
   };
-  return <div className="flex items-center gap-1">{renderStars()}</div>;
+  return <div data-testid="star-rating" className="flex items-center gap-1">{renderStars()}</div>;
 };
 
 export default StarRating;

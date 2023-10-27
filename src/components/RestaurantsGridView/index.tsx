@@ -12,26 +12,14 @@ interface RestaurantsGridViewProps {
 const RestaurantsGridView: React.FC<RestaurantsGridViewProps> = ({
   restaurantsSortedData,
 }) => {
-  const [items, setItems] = useState(9); // Initial number of items to display
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
-
-  const loadMore = () => {
-    if (loading) return;
-    setLoading(true);
-    setTimeout(() => {
-      if (items >= restaurantsSortedData.length) {
-        setHasMore(false);
-      } else {
-        setItems(items + 9);
-        setLoading(false);
-      }
-    }, 2000);
-  };
+  const [items, setItems] = useState(9);
   return (
-    <div className="flex items-center justify-center gap-4 flex-wrap">
+    <div
+      data-testid="restaurants-container"
+      className="flex items-center justify-center gap-4 flex-wrap"
+    >
       {restaurantsSortedData.length === 0 ? (
-        <div className="flex flex-col gap-4 items-center py-4">
+        <div data-testid="not-found-block" className="flex flex-col gap-4 items-center py-4">
           <Image
             src="https://b.zmtcdn.com/data/web_assets/92ee94aa8441af56a34dc5a61547c50a1591338812.png"
             alt="live-icon"
@@ -45,10 +33,15 @@ const RestaurantsGridView: React.FC<RestaurantsGridViewProps> = ({
       ) : (
         <InfiniteScroll
           dataLength={items}
-          next={loadMore}
-          hasMore={hasMore}
+          next={() => {
+            setItems(items + 9);
+          }}
+          hasMore={true && items < restaurantsSortedData.length}
           loader={
-            <div className="flex items-center justify-center p-4">
+            <div
+              data-testid="spinner"
+              className="flex items-center justify-center p-4"
+            >
               <TailSpin
                 height="80"
                 width="80"

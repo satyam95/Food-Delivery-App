@@ -11,7 +11,7 @@ const MultiRangeSlider = ({
   setCostValue,
 }: MultiRangeSliderPropsType) => {
   return (
-    <div className="grow flex flex-col justify-center">
+    <div data-testid="cost-slider" className="grow flex flex-col justify-center">
       <div className="w-full relative block">
         <ReactSlider
           className="bg-primary h-1 rounded-sm w-full"

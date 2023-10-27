@@ -9,7 +9,7 @@ const JombortoneBanner = () => {
         <div className="absolute w-full h-full">
           <Image
             src="/images/banner1.jpg"
-            alt="image"
+            alt="banner-image"
             fill={true}
             className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 960px"
@@ -20,7 +20,7 @@ const JombortoneBanner = () => {
             <div className="mb-4 md:mb-7">
               <Image
                 src="https://b.zmtcdn.com/web_assets/8313a97515fcb0447d2d77c276532a511583262271.png"
-                alt="image"
+                alt="logo-image"
                 height={84}
                 width={300}
                 style={{

@@ -18,7 +18,7 @@ const MenuItemCard = ({
   tag_image: string;
 }) => {
   return (
-    <div className="flex gap-4 items-start pb-4 last:pb-0">
+    <div data-testid="menu-item-card" className="flex gap-4 items-start pb-4 last:pb-0">
       <div className="relative w-[130px] h-[130px]">
         {image !== undefined ? (
           <Image
@@ -39,7 +39,7 @@ const MenuItemCard = ({
         )}
         <Image
           src={tag_image}
-          alt="live-icon"
+          alt="veg_non-veg_icon"
           width={14}
           height={14}
           className="absolute top-2 right-2 z-20 bg-white rounded"

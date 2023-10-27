@@ -81,7 +81,7 @@ const ResturantDetailOverview = ({ cuisine, safetyCheck, cft }: TabOverType) => 
             <p className="text-base text-primary">+91 9999999999</p>
           </div>
           <div className="pt-4">
-            <h3 className="text-xl text-[rgb(28,28,28)]">Direction</h3>
+            <h3 data-testid="ditection-text" className="text-xl text-[rgb(28,28,28)]">Direction</h3>
           </div>
           <div className="pt-4 flex items-center gap-6">
             <ButtonWithIcon icon="/images/copy_icon.svg" text="Copy" />

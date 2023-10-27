@@ -92,6 +92,7 @@ const ResturantDetailPhotos = () => {
         </button>
         {uniqueCategoriesWithCount.map((item) => (
           <button
+            data-testid="category-button"
             key={item.category}
             className={`text-sm leading-[14px] rounded px-4 font-light py-2 capitalize border ${
               selectedOption === item.category
@@ -111,6 +112,7 @@ const ResturantDetailPhotos = () => {
             key={item.name}
           >
             <Image
+              data-testid="category-food-image"
               src={item.image}
               alt={item.name}
               fill={true}

@@ -31,7 +31,7 @@ const RestaurantCard = ({
   cuisine,
 }: RestaurantCardPropsType) => {
   return (
-    <div className="p-2.5 hover:bg-white hover:shadow-[rgba(28,28,28,0.12)_0px_0.4rem_1.8rem] hover:border-[rgb(232,232,232)] rounded-3xl" >
+    <div data-testid="restaurant-card" className="p-2.5 hover:bg-white hover:shadow-[rgba(28,28,28,0.12)_0px_0.4rem_1.8rem] hover:border-[rgb(232,232,232)] rounded-3xl" >
       <Link href={`/resturant/${slug}`}>
         <div className="max-w-[328px]">
           <div className="relative h-[248px] w-[328px]">
@@ -79,7 +79,6 @@ const RestaurantCard = ({
               ""
             )}
           </div>
-          {/* <div className="h-[1px] bg-[rgb(232,232,232)] mt-1.5 mb-2"></div> */}
         </div>
       </Link>
     </div>

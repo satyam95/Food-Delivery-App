@@ -17,10 +17,12 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
     cost: [number, number];
     cuisine: string[];
     rating: number;
+    sort: string;
   } = {
     cost: [0, 1000],
     cuisine: [],
     rating: 0,
+    sort: "Popularity",
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -36,9 +38,9 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
   const [restaurantsSortedData, setRestaurantsSortedData] =
     useState<Restaurant[]>(restaurant);
 
-  const handleSliderChange = (value: number, index: number) => {
-    setRatingValue(value);
-  };
+  // const handleSliderChange = (value: number, index: number) => {
+  //   setRatingValue(value);
+  // };
 
   const handleMarkerClick = (index: number) => {
     if (index !== 4) {
@@ -51,7 +53,6 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
     if (value === 1) return "3.5+";
     if (value === 2) return "4.0+";
     if (value === 3) return "4.5+";
-    if (value === 4) return "5.0";
   };
 
   const closeModal = () => {
@@ -173,7 +174,8 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
     setFilterTipValue({
       cost: costValues, // Update the cost array
       cuisine: selectedCuisines, // Update the cuisine array
-      rating: ratingValue, // Update the rating value
+      rating: ratingValue,
+      sort: sorting, // Update the rating value
     });
 
     closeModal();
@@ -198,6 +200,14 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
       rating: 0,
     }));
   };
+
+  const handleSortTip = () => {
+    setSorting("Popularity");
+    setFilterTipValue((prevValue) => ({
+      ...prevValue,
+      sort: "Popularity",
+    }))
+  }
 
   const handleCostRemove = () => {
     setCostValues([0, 1000]);
@@ -225,7 +235,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
   useEffect(() => {
     applySorting();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterTipValue.rating, filterTipValue.cuisine, filterTipValue.cost]);
+  }, [filterTipValue.rating, filterTipValue.cuisine, filterTipValue.cost, filterTipValue.sort]);
 
   const uniqueCuisinesList = getUniqueCuisines(restaurant);
 
@@ -246,12 +256,33 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
               />
               Filter
             </button>
+            {filterTipValue.sort === "Popularity" ? "" : (
+              <div
+                data-testid="filtertip-sort-value"
+                className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg"
+              >
+                <div className="text-base leading-[18px] text-white font-light">
+                  Sort: {filterTipValue.sort}
+                </div>
+                <div data-testid="filtertip-sort-value-remove" className="cursor-pointer" onClick={handleSortTip}>
+                  <Image
+                    src="/images/close_white_icon.svg"
+                    alt="filter-icon"
+                    height={18}
+                    width={18}
+                  />
+                </div>
+              </div>
+            )}
             {filterTipValue.rating > 0 && (
-              <div className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg">
+              <div
+                data-testid="filtertip-rating"
+                className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg"
+              >
                 <div className="text-base leading-[18px] text-white font-light">
                   Rating: {numberToRating(filterTipValue.rating)}
                 </div>
-                <div className="cursor-pointer" onClick={handleRatingTip}>
+                <div data-testid="filtertip-rating-remove" className="cursor-pointer" onClick={handleRatingTip}>
                   <Image
                     src="/images/close_white_icon.svg"
                     alt="filter-icon"
@@ -264,6 +295,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
             {filterTipValue.cuisine.length > 0 &&
               filterTipValue.cuisine.map((cuisine, index) => (
                 <div
+                  data-testid="filtertip-cuisine"
                   key={index}
                   className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg"
                 >
@@ -271,6 +303,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                     {cuisine}
                   </div>
                   <div
+                    data-testid="filtertip-cuisine-btn"
                     className="cursor-pointer"
                     onClick={() => handleRemoveCuisine(cuisine)}
                   >
@@ -285,10 +318,13 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
               ))}
             {filterTipValue.cost[0] !== 0 && (
               <div className="bg-primary flex items-center gap-1 shadow-[rgba(54,54,54,0.06)_0px_1px_2px] p-2 rounded-lg">
-                <div className="text-base leading-[18px] text-white font-light">
+                <div
+                  data-testid="filtertip-cost"
+                  className="text-base leading-[18px] text-white font-light"
+                >
                   Cost: {filterTipValue.cost[0]}+
                 </div>
-                <div className="cursor-pointer" onClick={handleCostRemove}>
+                <div data-testid="filtertip-cost-remove" className="cursor-pointer" onClick={handleCostRemove}>
                   <Image
                     src="/images/close_white_icon.svg"
                     alt="filter-icon"
@@ -305,7 +341,9 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
       <section className="bg-white">
         <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="pt-8 pb-14">
-            <h2 className="text-3xl font-normal text-gray-900 pb-6 md:pb-8">{title}</h2>
+            <h2 className="text-3xl font-normal text-gray-900 pb-6 md:pb-8">
+              {title}
+            </h2>
             <RestaurantsGridView
               restaurantsSortedData={restaurantsSortedData}
             />
@@ -346,13 +384,19 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                       }
                     >
                       <p
+                        data-testid="sorting-text-btn"
                         className={`text-[rgb(79,79,79)] text-base leading-[18px] ${
                           tabState === 1 ? "font-medium" : "font-normal"
                         }`}
                       >
                         Sort by
                       </p>
-                      <p className="text-[rgb(239,79,95)] text-sm">{sorting}</p>
+                      <p
+                        data-testid="sorting-text"
+                        className="text-[rgb(239,79,95)] text-sm"
+                      >
+                        {sorting}
+                      </p>
                     </div>
                     <div
                       onClick={() => setTabState(2)}
@@ -362,7 +406,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                           : "w-full pl-3 md:pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
                       }
                     >
-                      <p
+                      <p data-testid="sorting-cuisine-btn"
                         className={`text-[rgb(79,79,79)] text-base leading-[18px] ${
                           tabState === 2 ? "font-medium" : "font-normal"
                         }`}
@@ -386,6 +430,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                       }
                     >
                       <p
+                        data-testid="rating-btn"
                         className={`text-[rgb(79,79,79)] text-base leading-[18px] ${
                           tabState === 3 ? "font-medium" : "font-normal"
                         }`}
@@ -401,7 +446,7 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                           : "w-full pl-3 md:pl-6 text-left h-16 flex flex-col justify-center cursor-pointer"
                       }
                     >
-                      <p
+                      <p data-testid="cost-per-person-text"
                         className={`text-[rgb(79,79,79)] text-base leading-[18px] ${
                           tabState === 4 ? "font-medium" : "font-normal"
                         }`}
@@ -476,13 +521,16 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                             <div className="text-[rgb(105,105,105)] text-sm">
                               Rating
                             </div>
-                            <div className="text-[rgb(28,28,28)] text-base">
+                            <div
+                              data-testid="rrating-text"
+                              className="text-[rgb(28,28,28)] text-base"
+                            >
                               {numberToRating(ratingValue)}
                             </div>
                           </div>
                           <RangeSlider
                             value={ratingValue}
-                            handleSliderChange={handleSliderChange}
+                            // handleSliderChange={handleSliderChange}
                             handleMarkerClick={handleMarkerClick}
                           />
                         </div>
@@ -495,7 +543,10 @@ const RestaurantsView: React.FC<RestaurantsViewPropsType> = ({
                             <div className="text-[rgb(105,105,105)] text-sm">
                               Cost per person
                             </div>
-                            <div className="text-[rgb(28,28,28)] text-base">
+                            <div
+                              data-testid="cost-text"
+                              className="text-[rgb(28,28,28)] text-base"
+                            >
                               ₹{costValues[0]} -{" "}
                               {costValues[1] === 1000
                                 ? "Any"

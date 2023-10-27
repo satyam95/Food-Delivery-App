@@ -16,7 +16,7 @@ const CollectionRectBlock = () => {
             </p>
             <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
               {collectionsData.map((collectionData) => (
-                <div className="w-full md:w-3/12" key={collectionData.title}>
+                <div className="w-full md:w-3/12" key={collectionData.title} data-testid="collection-data-card">
                   <div className="relative cursor-pointer">
                     <div className="relative w-full h-[400px]">
                       <Image

@@ -15,7 +15,8 @@ const config = {
   collectCoverage: true,
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
-    "!src/data/**",
+    "!src/data/*.{ts,tsx}",
+    "!src/components/NextJsImage/index.tsx",
     "!**/*.{js,jsx}",
     "!**/*.d.ts",
     "!**/node_modules/**",

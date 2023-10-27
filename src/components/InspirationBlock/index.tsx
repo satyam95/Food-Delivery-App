@@ -12,7 +12,7 @@ const InspirationBlock = () => {
           </h2>
           <div className="grid grid-cols-3 gap-8 md:gap-2 md:grid-cols-6">
             {InspirationData.map((item) => (
-              <div key={item.id}>
+              <div key={item.id} data-testid="inspiration-food-card">
                 <InspirationFoodCard name={item.title} image={item.image} />
               </div>
             ))}

@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const SearchBar: React.FC = () => {
-  const search = useSearchParams();
+  // const search = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -23,7 +23,7 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <div className="p-2 border rounded bg-white w-full shadow-[rgba(28,28,28,0.08)_0px_2px_8px] max-w-[700px] h-[54px] flex items-center">
+    <div data-testid="search-bar" className="p-2 border rounded bg-white w-full shadow-[rgba(28,28,28,0.08)_0px_2px_8px] max-w-[700px] h-[54px] flex items-center">
       <div className="hidden md:flex items-center justify-between w-[200px]">
         <div className="flex items-center gap-1">
           <Image
