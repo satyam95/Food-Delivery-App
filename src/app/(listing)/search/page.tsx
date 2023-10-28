@@ -52,7 +52,7 @@ const Search = () => {
     }
   }, [searchQuery]);
 
-  console.log(searchData);
+ 
 
   if (searchData?.length === 0 || searchData === null) {
     return (
@@ -73,7 +73,10 @@ const Search = () => {
     return (
       <div className="max-w-[1100px] mx-auto">
         <div className="py-10">
-          <div className="text-3xl font-normal text-gray-900 pb-8">
+          <div
+            data-testid="search-result-text"
+            className="text-3xl font-normal text-gray-900 pb-8"
+          >
             Showing result for: {capitalize(searchQuery!)}
           </div>
           <div className="flex items-center gap-4 flex-wrap">

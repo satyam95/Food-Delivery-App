@@ -6,7 +6,7 @@ import React from "react";
 const ListingHeader = () => {
   return (
     <>
-      <header className="py-2">
+      <header className="py-2" data-testid="listing-header">
         <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
           <div className="flex items-center justify-between">
             <div className="w-32">
@@ -25,9 +25,9 @@ const ListingHeader = () => {
               </Link>
             </div>
             <div className="hidden md:flex justify-center grow">
-            <SearchBar />
+              <SearchBar />
             </div>
-              
+
             <nav>
               <ul className="flex items-center gap-4">
                 <li className="text-lg text-gray-600 font-light">Log in</li>

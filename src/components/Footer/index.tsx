@@ -4,10 +4,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-100">
+    <footer data-testid="main-footer" className="bg-slate-100">
       <div className="pt-12 pb-6">
         <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
-          <div className="mb-10 w-32" >
+          <div className="mb-10 w-32">
             <Image
               src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
               alt="footer-logo"

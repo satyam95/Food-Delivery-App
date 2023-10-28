@@ -4,7 +4,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="absolute top-0 w-full z-10">
+    <header data-testid="main-header" className="absolute top-0 w-full z-10">
       <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
         <div className="py-5">
           <nav
@@ -28,16 +28,24 @@ const Header = () => {
             <div className="hidden md:block">
               <ul className="flex gap-6">
                 <li className="text-white text-lg font-light cursor-pointer">
-                  <Link href="#" tabIndex={0}>Investor Relations</Link>
+                  <Link href="#" tabIndex={0}>
+                    Investor Relations
+                  </Link>
                 </li>
                 <li className="text-white text-lg font-light cursor-pointer">
-                  <Link href="#" tabIndex={0}>Add restaurant</Link>
+                  <Link href="#" tabIndex={0}>
+                    Add restaurant
+                  </Link>
                 </li>
                 <li className="text-white text-lg font-light cursor-pointer">
-                  <Link href="#" tabIndex={0}>Log in</Link>
+                  <Link href="#" tabIndex={0}>
+                    Log in
+                  </Link>
                 </li>
                 <li className="text-white text-lg font-light cursor-pointer">
-                  <Link href="#" tabIndex={0}>Sign up</Link>
+                  <Link href="#" tabIndex={0}>
+                    Sign up
+                  </Link>
                 </li>
               </ul>
             </div>

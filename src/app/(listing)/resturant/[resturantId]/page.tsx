@@ -54,6 +54,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
           <section className="hidden md:flex items-center gap-2.5">
             <div className="relative h-[370px] w-3/5 overflow-hidden">
               <Image
+                data-testid="photo-gallery-image"
                 src={photoUrls[0]}
                 alt="image"
                 fill={true}
@@ -64,6 +65,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
             <div className="flex flex-col gap-2.5 w-1/5">
               <div className="relative w-full h-[180px] overflow-hidden">
                 <Image
+                data-testid="photo-gallery-image"
                   src={photoUrls[1]}
                   alt="image"
                   fill={true}
@@ -73,6 +75,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
               </div>
               <div className="relative w-full h-[180px] overflow-hidden">
                 <Image
+                data-testid="photo-gallery-image"
                   src={photoUrls[2]}
                   alt="image"
                   fill={true}
@@ -84,6 +87,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
             <div className="relative w-1/5">
               <div className="relative w-full h-[370px] brightness-50 z-10">
                 <Image
+                data-testid="photo-gallery-image"
                   src={photoUrls[3]}
                   alt="image"
                   fill={true}
@@ -98,7 +102,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
           </section>
           <section className="md:py-4">
             <div className="flex md:justify-between md:items-center flex-col gap-4 md:flex-row">
-              <h1 className="text-3xl">{data?.info?.name}</h1>
+              <h1 data-testid="rest-name-text" className="text-3xl">{data?.info?.name}</h1>
               <div className="flex md:items-center gap-4 md:gap-20">
                 <ReviewBlock
                   reviewRating={data?.info.ratingNew.ratings.DINING.rating}
@@ -147,7 +151,7 @@ const ResturantPage = ({ params }: { params: { resturantId: string } }) => {
             order={data?.order}
             reviews={data?.REVIEWS}
             restaurantName={data?.info?.name}
-            menu={data?.menuItems}
+            // menu={data?.menuItems}
           />
         </div>
       </div>

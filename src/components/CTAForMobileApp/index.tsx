@@ -4,7 +4,7 @@ import CTAForm from "../CTAForm";
 
 const CTAForMobileApp = () => {
   return (
-    <section className="bg-[rgb(255,251,247)] mt-20">
+    <section className="bg-[rgb(255,251,247)] mt-20" data-testid="cta-for-mobile-app">
       <div className="py-20 md:py-24 max-w-[1100px] mx-auto">
         <div className="flex items-center flex-wrap gap-14 justify-center">
           <div className="">

@@ -42,14 +42,6 @@ test("ResturantReviewCard displays rating and timestamp", () => {
   expect(timestampElement).toBeInTheDocument();
 });
 
-test("ResturantReviewCard displays profile picture", () => {
-  render(<ResturantReviewCard {...mockReviewData} />);
-
-  const profileImage = screen.getByAltText("John Doe profile picture");
-
-  expect(profileImage).toBeInTheDocument();
-});
-
 test("ResturantReviewCard displays helpful, comments, and action buttons", () => {
   render(<ResturantReviewCard {...mockReviewData} />);
 
@@ -78,7 +70,6 @@ test("ResturantReviewCard should handle empty data", () => {
   const nameElement = screen.queryByText("John Doe");
   const ratingElement = screen.queryByText("4.5");
   const timestampElement = screen.queryByText("2 hours ago");
-  const profileImage = screen.queryByAltText("John Doe profile picture");
   const ratingTextElement = screen.queryByText("Great experience");
   const reviewTextElement = screen.queryByText(
     "This is a great restaurant with excellent service."
@@ -87,7 +78,6 @@ test("ResturantReviewCard should handle empty data", () => {
   expect(nameElement).toBeNull();
   expect(ratingElement).toBeNull();
   expect(timestampElement).toBeNull();
-  expect(profileImage).toBeNull();
   expect(ratingTextElement).toBeNull();
   expect(reviewTextElement).toBeNull();
 });

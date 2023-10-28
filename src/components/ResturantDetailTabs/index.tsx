@@ -14,7 +14,7 @@ const ResturantDetailTabs = ({
   order,
   reviews,
   restaurantName,
-  menu,
+  // menu,
 }: TabType) => {
   const [activeTab, setActiveTab] = useState(1);
 
@@ -85,7 +85,7 @@ const ResturantDetailTabs = ({
             />
           </div>
         )}
-        {menu !== undefined && (
+        {/* {menu !== undefined && ( */}
           <div
             className="flex flex-col items-center justify-center cursor-pointer"
             onClick={() => handleTabClick(5)}
@@ -105,7 +105,7 @@ const ResturantDetailTabs = ({
               } rounder h-[3px] z-10 mt-1 w-full border-none`}
             />
           </div>
-        )}
+        {/* )} */}
         <hr className="rounded w-[calc(100%-2px)] border-t-[3px] absolute bottom-0 border-[rgb(207,207,207)]" />
       </section>
       <section className="py-6">
@@ -124,7 +124,7 @@ const ResturantDetailTabs = ({
           />
         )}
         {activeTab === 5 && (
-          <ResturantDetailMenu restaurantName={restaurantName} menu={menu} />
+          <ResturantDetailMenu restaurantName={restaurantName} />
         )}
       </section>
     </>

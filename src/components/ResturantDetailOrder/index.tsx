@@ -25,7 +25,6 @@ const ResturantDetailOrder = ({ order }: any) => {
       if (divRef.current) {
         const divRect = divRef.current.getBoundingClientRect();
         if (divRect.top <= 0) {
-          console.log("below top");
           const menuSections = order?.menuList?.menus;
           if (menuSections) {
             for (let i = menuSections.length - 1; i >= 0; i--) {
@@ -77,7 +76,6 @@ const ResturantDetailOrder = ({ order }: any) => {
   };
 
   const filteredMenuList = filterMenuList(order?.menuList?.menus, searchQuery);
-  console.log(filteredMenuList.length);
 
   return (
     <div className="flex" ref={divRef}>

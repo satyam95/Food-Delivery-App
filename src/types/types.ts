@@ -219,5 +219,5 @@ export interface TabType {
   order: any | undefined;
   reviews: any | undefined;
   restaurantName: string | undefined;
-  menu: any | undefined;
+  // menu: any | undefined;
 }

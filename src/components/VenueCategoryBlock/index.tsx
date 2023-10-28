@@ -4,7 +4,10 @@ import { venueCategories } from "@/data/venueCategories";
 
 const VenueCategoryBlock = () => {
   return (
-    <section className="mb-16 md:mb-24 mt-10">
+    <section
+      className="mb-16 md:mb-24 mt-10"
+      data-testid="venue-category-block"
+    >
       <div className="px-6 md:px-0 max-w-[1100px] mx-auto">
         <div className="flex flex-wrap justify-between items-center gap-8 md:gap-0">
           {venueCategories.map((venueCategory) => (

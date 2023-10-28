@@ -25,8 +25,7 @@
     "react-loader-spinner": "^5.4.5",
     "react-slider": "^2.0.6",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6",
-    "yet-another-react-lightbox": "^3.12.2"
+    "typescript": "5.1.6"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",

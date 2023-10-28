@@ -4,7 +4,7 @@ import React from "react";
 
 const JombortoneBanner = () => {
   return (
-    <section className="relative">
+    <section className="relative" data-testid="jumbotron-banner">
       <div className="relative h-[75vh] md:h-[63vh] max-h-[570px]">
         <div className="absolute w-full h-full">
           <Image
@@ -24,8 +24,8 @@ const JombortoneBanner = () => {
                 height={84}
                 width={300}
                 style={{
-                  width: '100%',
-                  height: 'auto',
+                  width: "100%",
+                  height: "auto",
                 }}
                 sizes="(max-width: 640px) 200px, 300px"
               />
